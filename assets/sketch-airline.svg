@@ -1,0 +1,23 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .hand { stroke: #555; stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .hand-light { stroke: #888; stroke-width: 0.8; fill: none; stroke-linecap: round; }
+  </style>
+  <!-- Plane body -->
+  <path class="hand" d="M60 120 Q80 115 140 110 Q160 108 180 110 Q200 115 210 125 Q200 135 180 140 Q160 142 140 140 Q80 135 60 130 Q55 125 60 120" />
+  <!-- Wing -->
+  <path class="hand" d="M100 115 L90 80 Q100 78 110 80 L120 115" />
+  <!-- Tail -->
+  <path class="hand" d="M195 115 L210 95 Q215 93 218 95 L210 115" />
+  <!-- Window dots -->
+  <circle class="hand-light" cx="90" cy="125" r="3" />
+  <circle class="hand-light" cx="110" cy="123" r="3" />
+  <circle class="hand-light" cx="130" cy="122" r="3" />
+  <!-- Turnaround arrow -->
+  <path class="hand" d="M230 70 Q280 70 280 120 Q280 160 240 170" />
+  <path class="hand" d="M240 170 L250 162" />
+  <path class="hand" d="M240 170 L248 178" />
+  <!-- Up arrow indicator -->
+  <path class="hand-light" d="M50 150 L50 90 L40 100" />
+  <path class="hand-light" d="M50 90 L60 100" />
+</svg>
