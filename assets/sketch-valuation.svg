@@ -1,0 +1,26 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .hand { stroke: #555; stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .hand-light { stroke: #888; stroke-width: 0.8; fill: none; stroke-linecap: round; }
+  </style>
+  <!-- Balance scale base -->
+  <path class="hand" d="M160 170 L160 100" />
+  <path class="hand" d="M140 170 Q160 172 180 170" />
+  <!-- Balance beam -->
+  <path class="hand" d="M80 95 Q160 90 240 95" />
+  <!-- Left pan -->
+  <path class="hand" d="M80 95 L70 120 Q80 125 90 120 L80 95" />
+  <path class="hand-light" d="M68 125 Q80 130 92 125" />
+  <!-- Right pan -->
+  <path class="hand" d="M240 95 L230 120 Q240 125 250 120 L240 95" />
+  <path class="hand-light" d="M228 125 Q240 130 252 125" />
+  <!-- Dollar sign on left -->
+  <path class="hand-light" d="M78 108 Q82 105 78 100 Q74 95 78 92" />
+  <path class="hand-light" d="M80 88 L80 115" />
+  <!-- Building blocks on right -->
+  <rect class="hand-light" x="234" y="100" width="12" height="10" />
+  <rect class="hand-light" x="237" y="92" width="6" height="8" />
+  <!-- Rising arrow -->
+  <path class="hand" d="M270 160 L270 50 L280 60" />
+  <path class="hand" d="M270 50 L260 60" />
+</svg>

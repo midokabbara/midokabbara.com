@@ -346,6 +346,24 @@
   list-style: disc;
 }
 
+/* Lead paragraph - slightly larger intro text */
+.project__content .lead {
+  font-size: var(--text-base);
+  color: var(--text);
+  margin-bottom: var(--space-6);
+}
+
+/* Formula callout - centered, emphasized */
+.project__content .formula {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  text-align: center;
+  padding: var(--space-4);
+  background: var(--bg-subtle);
+  border-radius: 4px;
+  margin: var(--space-4) 0 var(--space-6) 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .timeline {
