@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Redesign · Mido Kabbara</title>
+  <meta name="description" content="Ground-up redesign of Shopify's analytics platform for 4M+ merchants.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body>
+  <div class="site">
+    <!-- Depth Indicator -->
+    <div class="depth" aria-hidden="true">
+      <div class="depth__bar">
+        <div class="depth__fill" style="height: 75%;"></div>
+      </div>
+      <span class="depth__label">depth: 3</span>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav">
+          <a href="../index.html" class="nav__name">Mido Kabbara</a>
+          <div class="nav__links">
+            <a href="../portfolio.html" class="nav__link nav__link--active">Portfolio</a>
+            <a href="../history.html" class="nav__link">History</a>
+            <a href="../writing.html" class="nav__link">Writing</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main">
+      <section class="section">
+        <div class="container">
+          <article class="project">
+            <header class="project__header">
+              <p class="text-sm text-muted" style="margin-bottom: var(--space-2);">
+                <a href="../portfolio.html" class="link">← Portfolio</a>
+              </p>
+              <h1 class="project__title">Analytics Redesign</h1>
+              <div class="project__meta">
+                <span>Shopify</span>
+                <span>2024</span>
+                <span>Product Lead</span>
+              </div>
+            </header>
+
+            <div class="project__metrics">
+              <div class="metric">
+                <span class="metric__value">4M+</span>
+                <span class="metric__label">merchants</span>
+              </div>
+              <div class="metric">
+                <span class="metric__value">First</span>
+                <span class="metric__label">principles rebuild</span>
+              </div>
+              <div class="metric">
+                <span class="metric__value">#1</span>
+                <span class="metric__label">pain point</span>
+              </div>
+            </div>
+
+            <div class="project__content">
+              <h2>Context</h2>
+              <p>
+                Analytics was consistently the #1 pain point for Shopify merchants. The existing system was built incrementally over years—a collection of rigid reports that couldn't answer the questions merchants actually had.
+              </p>
+              <p>
+                Merchants needed to understand their business, but the tools forced them into predefined boxes. Want to see conversion rate by traffic source for the last 90 days? That exact combination didn't exist.
+              </p>
+
+              <h2>Approach</h2>
+              <p>
+                Rather than adding more reports, we went back to first principles: what decisions are merchants trying to make?
+              </p>
+              <p>
+                The answer: they need to explore their data, not just view reports. This led to three fundamental shifts:
+              </p>
+              <ul>
+                <li><strong>Customizable dashboards</strong> — Merchants build their own views</li>
+                <li><strong>Exploratory data access</strong> — Drill into any metric, slice by any dimension</li>
+                <li><strong>ShopifyQL for power users</strong> — Query language for advanced analysis</li>
+              </ul>
+
+              <h2>Outcome</h2>
+              <p>
+                Shipped to all 4M+ merchants. Moved from a report-centric model to an exploration-centric one. Merchants can now answer their own questions without waiting for us to build specific reports.
+              </p>
+
+              <h2>What I did</h2>
+              <ul>
+                <li>Led product strategy and vision</li>
+                <li>Defined the three-shift framework that guided development</li>
+                <li>Worked with engineering to design flexible data architecture</li>
+                <li>Shipped iteratively while maintaining backwards compatibility</li>
+              </ul>
+
+              <div class="divider"></div>
+              <p class="text-sm text-muted">
+                <a href="../portfolio.html" class="link">← Back to portfolio</a>
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="divider"></div>
+        <p class="text-sm text-muted">
+          <a href="mailto:mido@midokabbara.com" class="link">mido@midokabbara.com</a>
+          · <a href="https://linkedin.com/in/midokabbara" class="link">LinkedIn</a>
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../js/scroll.js"></script>
+</body>
+</html>
