@@ -1,0 +1,23 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .hand { stroke: #555; stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .hand-light { stroke: #888; stroke-width: 0.8; fill: none; stroke-linecap: round; }
+  </style>
+  <!-- Rough document -->
+  <path class="hand" d="M58 52 Q62 48 128 50 Q132 53 130 138 Q128 142 62 140 Q58 137 60 52" />
+  <path class="hand-light" d="M72 72 Q98 71 115 72" />
+  <path class="hand-light" d="M72 88 Q98 87 115 88" />
+  <path class="hand-light" d="M72 104 Q90 103 100 104" />
+  <!-- Rough checkmark -->
+  <path class="hand" d="M100 118 L106 126 L118 108" />
+  <!-- Rough arrow -->
+  <path class="hand" d="M142 96 Q155 95 168 96 Q175 95 178 96" />
+  <path class="hand" d="M170 88 Q179 96 170 104" />
+  <!-- Rough growth chart box -->
+  <path class="hand" d="M188 52 Q192 48 268 50 Q272 53 270 138 Q268 142 192 140 Q188 137 190 52" />
+  <!-- Rough growth line -->
+  <path class="hand" d="M202 122 Q215 110 228 115 Q245 108 255 72" />
+  <path class="hand" d="M255 72 L260 80 M255 72 L248 78" />
+  <!-- Rough money text -->
+  <text x="205" y="162" font-family="monospace" font-size="11" fill="#555" style="font-style: italic;">$160M</text>
+</svg>

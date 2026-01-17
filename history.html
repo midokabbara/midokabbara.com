@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>History · Mido Kabbara</title>
-  <meta name="description" content="Career timeline from PwC Strategy to Shopify Product.">
+  <title>path · mido kabbara</title>
+  <meta name="description" content="career path from pwc strategy to shopify product.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,93 +20,128 @@
 </head>
 <body>
   <div class="site">
-    <!-- Depth Indicator -->
-    <div class="depth" aria-hidden="true">
-      <div class="depth__bar">
-        <div class="depth__fill" style="height: 50%;"></div>
-      </div>
-      <span class="depth__label">depth: 2</span>
-    </div>
-
-    <!-- Header -->
-    <header class="site-header">
-      <div class="container">
-        <nav class="nav">
-          <a href="/" class="nav__name">Mido Kabbara</a>
-          <div class="nav__links">
-            <a href="portfolio.html" class="nav__link">Portfolio</a>
-            <a href="history.html" class="nav__link nav__link--active">History</a>
-            <a href="writing.html" class="nav__link">Writing</a>
+    <!-- Persistent Left Panel - Driver Tree -->
+    <nav class="driver-tree" aria-label="site map">
+      <a href="index.html" class="driver-tree__root">mido</a>
+      <div class="driver-tree__branches">
+        <div class="driver-tree__branch">
+          <a href="portfolio.html">├─ build</a>
+        </div>
+        <div class="driver-tree__branch">
+          <a href="writing.html">├─ think</a>
+        </div>
+        <div class="driver-tree__branch driver-tree__branch--active">
+          <a href="history.html">└─ path</a>
+          <div class="driver-tree__sub">
+            <div class="driver-tree__leaf"><a href="#shopify">├─ shopify</a></div>
+            <div class="driver-tree__leaf"><a href="#amazon">├─ amazon</a></div>
+            <div class="driver-tree__leaf"><a href="#pwc">├─ pwc</a></div>
+            <div class="driver-tree__leaf"><a href="#uoft">└─ uoft</a></div>
           </div>
-        </nav>
+        </div>
       </div>
-    </header>
+    </nav>
 
     <!-- Main Content -->
     <main class="site-main">
       <section class="section">
         <div class="container container--text">
-          <h1 style="margin-bottom: var(--space-12);">History</h1>
+
+          <div class="location">
+            <a href="index.html" class="location__back">mido</a>
+            <span class="location__sep">/</span>
+            <span class="location__current">path</span>
+          </div>
+
+          <h1>path</h1>
+          <p class="text-muted" style="margin-bottom: var(--space-8);">how i got here.</p>
 
           <div class="timeline">
             <!-- Shopify -->
-            <div class="timeline__item">
-              <span class="timeline__date">2023 – Present</span>
-              <h2 class="timeline__title">Product Lead, Analytics</h2>
-              <p class="timeline__company">Shopify · Toronto</p>
+            <div class="timeline__item" id="shopify">
+              <span class="timeline__date">2022 – present</span>
+              <h2 class="timeline__title">senior staff product manager, analytics</h2>
+              <p class="timeline__company">shopify · seattle</p>
               <p class="timeline__description">
-                Leading analytics for millions of merchants. Shipped ground-up platform redesign—moved from rigid reports to flexible exploration. Built multi-store reporting for Plus enterprise customers.
+                own how millions of merchants understand their business. shipped ground-up platform redesign—moved from rigid reports to flexible exploration. built multi-store reporting for plus enterprise.
               </p>
             </div>
 
             <!-- Amazon Care -->
-            <div class="timeline__item">
-              <span class="timeline__date">2021 – 2023</span>
-              <h2 class="timeline__title">Senior Product Manager, Clinician Tools</h2>
-              <p class="timeline__company">Amazon Care · Seattle</p>
+            <div class="timeline__item" id="amazon">
+              <span class="timeline__date">2021 – 2022</span>
+              <h2 class="timeline__title">senior product manager - technical</h2>
+              <p class="timeline__company">amazon care · seattle</p>
               <p class="timeline__description">
-                Healthcare pivot. Diagnosed clinician workflow bottlenecks, shipped fixes in 90 days. Built tools that reduced task completion time for care teams.
+                diagnosed clinician workflow bottlenecks, shipped fixes in 90 days. created prioritization framework adopted across product and engineering org.
               </p>
             </div>
 
             <!-- Amazon Subscriptions -->
             <div class="timeline__item">
-              <span class="timeline__date">2020 – 2021</span>
-              <h2 class="timeline__title">Product Manager, Subscription Boxes</h2>
-              <p class="timeline__company">Amazon · Seattle</p>
+              <span class="timeline__date">2019 – 2021</span>
+              <h2 class="timeline__title">senior product manager, subscription boxes</h2>
+              <p class="timeline__company">amazon · seattle</p>
               <p class="timeline__description">
-                Launched T-Shirt Club from zero. Print-on-demand subscriptions with WWE, MTV, Pokemon licensing. Owned end-to-end: product, engineering, finance, marketing, ops. $XM year one.
+                built t-shirt club from zero. print-on-demand subscriptions with wwe, mtv, pokemon licensing. owned end-to-end: product, engineering, finance, marketing, ops.
               </p>
             </div>
 
             <!-- Amazon Fashion -->
             <div class="timeline__item">
-              <span class="timeline__date">2018 – 2020</span>
-              <h2 class="timeline__title">Product Manager, The Drop</h2>
-              <p class="timeline__company">Amazon Fashion · Seattle</p>
+              <span class="timeline__date">2018 – 2019</span>
+              <h2 class="timeline__title">senior product manager, the drop</h2>
+              <p class="timeline__company">amazon fashion · seattle</p>
               <p class="timeline__description">
-                Built the demand system for Amazon's first made-to-order fashion business. Influencer collections manufactured only after customers order. Designed how demand signals flow from orders to manufacturing. No playbook—created from scratch.
+                designed amazon's first made-to-order demand system. influencer collections manufactured only after customers order. no playbook—created from scratch.
+              </p>
+            </div>
+
+            <!-- Amazon Supply Chain -->
+            <div class="timeline__item">
+              <span class="timeline__date">2017 – 2018</span>
+              <h2 class="timeline__title">senior supply chain planning manager</h2>
+              <p class="timeline__company">amazon fashion · seattle</p>
+              <p class="timeline__description">
+                created roos (return on operational spend) metric—adopted across all amazon softlines groups. built automated reporting tools.
+              </p>
+            </div>
+
+            <!-- Rotman MBA -->
+            <div class="timeline__item">
+              <span class="timeline__date">2015 – 2017</span>
+              <h2 class="timeline__title">mba, strategy & finance</h2>
+              <p class="timeline__company">rotman school of management · toronto</p>
+              <p class="timeline__description">
+                dean's list, gpa 3.75. vp-entrepreneurship at e&vc club. project leader at uoft startup consulting (mckinsey-advised).
               </p>
             </div>
 
             <!-- PwC -->
-            <div class="timeline__item">
-              <span class="timeline__date">2012 – 2018</span>
-              <h2 class="timeline__title">Senior Associate, Strategy</h2>
-              <p class="timeline__company">PwC · Dubai</p>
+            <div class="timeline__item" id="pwc">
+              <span class="timeline__date">2009 – 2015</span>
+              <h2 class="timeline__title">engagement manager, strategy & deals</h2>
+              <p class="timeline__company">pwc · kuwait city</p>
               <p class="timeline__description">
-                Six years of M&A due diligence, valuations, and turnarounds across Middle East. Led Talabat evaluation ($160M)—now dominant food delivery platform in region. PwC's largest valuation engagement globally in 2014. Created The PIN2 Challenge, adopted as global flagship CSR program.
+                led talabat due diligence ($160m)—now dominant food delivery in middle east. pwc's largest valuation globally in 2014. created the pin2 challenge—adopted as global flagship csr.
+              </p>
+            </div>
+
+            <!-- EY -->
+            <div class="timeline__item">
+              <span class="timeline__date">2008 – 2009</span>
+              <h2 class="timeline__title">associate, financial services</h2>
+              <p class="timeline__company">ey · kuwait city</p>
+              <p class="timeline__description">
+                strategy and financial restructuring of major banking group following 2008 crisis.
               </p>
             </div>
 
             <!-- Education -->
-            <div class="timeline__item">
-              <span class="timeline__date">2008 – 2012</span>
-              <h2 class="timeline__title">B.S. Economics</h2>
-              <p class="timeline__company">The Wharton School · Philadelphia</p>
-              <p class="timeline__description">
-                Concentrations in Finance and Management. Founded entrepreneurship initiatives.
-              </p>
+            <div class="timeline__item" id="uoft">
+              <span class="timeline__date">2004 – 2008</span>
+              <h2 class="timeline__title">honours b.a., economics</h2>
+              <p class="timeline__company">university of toronto</p>
             </div>
           </div>
 
@@ -119,8 +154,8 @@
       <div class="container">
         <div class="divider"></div>
         <p class="text-sm text-muted">
-          <a href="mailto:mido@midokabbara.com" class="link">mido@midokabbara.com</a>
-          · <a href="https://linkedin.com/in/midokabbara" class="link">LinkedIn</a>
+          <a href="mailto:mkmido@gmail.com" class="link">mkmido@gmail.com</a>
+          · <a href="https://linkedin.com/in/midokabbara" class="link">linkedin</a>
         </p>
       </div>
     </footer>

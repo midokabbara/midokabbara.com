@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the full tree (graph) · mido kabbara</title>
+  <meta name="description" content="a visual decomposition of everything i've built, thought, and experienced.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+
+  <style>
+    body {
+      font-family: var(--font-mono);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Full screen tree container */
+    .tree-takeover {
+      position: relative;
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* The visual graph area using CSS Grid */
+    .graph {
+      flex: 1;
+      position: relative;
+      padding: var(--space-8);
+      min-height: 70vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: repeat(12, 1fr);
+      gap: var(--space-2);
+      align-items: center;
+    }
+
+    /* SVG layer for connection lines - thinner */
+    .graph__lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Very thin lines */
+    .graph__line {
+      stroke: #e0e0e0;
+      stroke-width: 0.4;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0;
+      transition: opacity 300ms ease, stroke 200ms ease;
+    }
+
+    .graph__line.visible {
+      opacity: 1;
+    }
+
+    /* Highlighted state */
+    .graph__line--highlight {
+      stroke: var(--text-muted);
+      stroke-width: 0.6;
+    }
+
+    /* Dimmed state when other nodes hovered */
+    .graph__line--dim {
+      opacity: 0.15;
+    }
+
+    /* Nodes - pure text, no dots */
+    .node {
+      position: relative;
+      font-size: var(--text-xs);
+      z-index: 2;
+      transition: all 150ms ease;
+      opacity: 0;
+      transform: translateX(-8px);
+    }
+
+    .node.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .node a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .node a:hover {
+      color: var(--text-muted);
+    }
+
+    /* Highlighted node */
+    .node--highlight {
+      color: var(--text) !important;
+    }
+
+    .node--highlight a {
+      color: var(--text) !important;
+    }
+
+    /* Dimmed node */
+    .node--dim {
+      opacity: 0.2;
+    }
+
+    /* Root node */
+    .node--root {
+      grid-column: 1;
+      grid-row: 6 / 8;
+      font-size: var(--text-xl);
+      font-weight: 500;
+      justify-self: start;
+      padding-left: var(--space-4);
+    }
+
+    /* Branch nodes */
+    .node--branch {
+      font-size: var(--text-base);
+      font-weight: 500;
+      grid-column: 2;
+      justify-self: start;
+    }
+
+    .node--build { grid-row: 3; }
+    .node--think { grid-row: 7; }
+    .node--path { grid-row: 10; }
+
+    /* Leaf nodes */
+    .node--leaf {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      justify-self: start;
+    }
+
+    .node--leaf a:hover {
+      color: var(--text);
+    }
+
+    /* Build projects - column 3 */
+    .node--analytics { grid-column: 3; grid-row: 1; }
+    .node--multistore { grid-column: 3; grid-row: 2; }
+    .node--drop { grid-column: 3; grid-row: 3; }
+    .node--tshirt { grid-column: 3; grid-row: 4; }
+    .node--pin2 { grid-column: 3; grid-row: 5; }
+    .node--talabat { grid-column: 3; grid-row: 6; }
+
+    /* Think leaf */
+    .node--bottlenecks { grid-column: 3; grid-row: 7; }
+
+    /* Path entries - column 3 */
+    .node--shopify-path { grid-column: 3; grid-row: 8; }
+    .node--amazon-path { grid-column: 3; grid-row: 9; }
+    .node--rotman { grid-column: 3; grid-row: 10; }
+    .node--pwc-path { grid-column: 3; grid-row: 11; }
+    .node--uoft { grid-column: 3; grid-row: 12; }
+
+    /* Ambient quotes - column 4 */
+    .ambient-quotes {
+      grid-column: 4;
+      grid-row: 5 / 10;
+      padding-left: var(--space-6);
+      font-size: 10px;
+      line-height: 1.6;
+      opacity: 0;
+      transition: opacity 400ms ease;
+    }
+
+    .node--think:hover ~ .ambient-quotes,
+    .ambient-quotes:hover {
+      opacity: 1;
+    }
+
+    .ambient-quote {
+      color: var(--text);
+      opacity: 0.15;
+      margin-bottom: var(--space-3);
+      transition: opacity 400ms ease;
+    }
+
+    .ambient-quote cite {
+      display: block;
+      font-style: normal;
+      color: var(--text-muted);
+      margin-top: var(--space-1);
+    }
+
+    .ambient-quotes:hover .ambient-quote {
+      opacity: 0.5;
+    }
+
+    /* Narrative footer */
+    .narrative {
+      padding: var(--space-8) var(--space-8) var(--space-12);
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .narrative__col {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .narrative__title {
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: var(--space-2);
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      bottom: var(--space-4);
+      left: var(--space-4);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-decoration: none;
+      z-index: 100;
+    }
+
+    .back-link:hover {
+      color: var(--text);
+    }
+
+    .back-link::before {
+      content: '\2190 ';
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .graph {
+        grid-template-columns: 1fr 1fr 1fr;
+        min-height: 80vh;
+      }
+
+      .ambient-quotes {
+        display: none;
+      }
+
+      .node--root { font-size: var(--text-lg); }
+      .node--branch { font-size: var(--text-xs); }
+    }
+
+    @media (max-width: 600px) {
+      .graph {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        gap: var(--space-1);
+        min-height: auto;
+        padding: var(--space-6);
+      }
+
+      .graph__lines {
+        display: none;
+      }
+
+      .node {
+        opacity: 1;
+        transform: none;
+        padding: var(--space-1) 0;
+      }
+
+      .node--root {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        padding-left: 0;
+        margin-bottom: var(--space-4);
+      }
+
+      .node--branch {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .node--leaf {
+        grid-column: 2;
+        grid-row: auto;
+      }
+
+      /* Stack everything vertically */
+      .node--build { grid-row: 2; }
+      .node--analytics { grid-row: 2; }
+      .node--multistore { grid-row: 3; grid-column: 2; }
+      .node--drop { grid-row: 4; grid-column: 2; }
+      .node--tshirt { grid-row: 5; grid-column: 2; }
+      .node--pin2 { grid-row: 6; grid-column: 2; }
+      .node--talabat { grid-row: 7; grid-column: 2; }
+
+      .node--think { grid-row: 8; grid-column: 1; }
+      .node--bottlenecks { grid-row: 8; grid-column: 2; }
+
+      .node--path { grid-row: 9; grid-column: 1; }
+      .node--shopify-path { grid-row: 9; grid-column: 2; }
+      .node--amazon-path { grid-row: 10; grid-column: 2; }
+      .node--rotman { grid-row: 11; grid-column: 2; }
+      .node--pwc-path { grid-row: 12; grid-column: 2; }
+      .node--uoft { grid-row: 13; grid-column: 2; }
+
+      .narrative {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="tree-takeover">
+    <!-- Visual Graph -->
+    <div class="graph">
+      <!-- SVG Connection Lines - drawn dynamically -->
+      <svg class="graph__lines" preserveAspectRatio="none">
+        <!-- Lines will be drawn by JavaScript based on actual element positions -->
+      </svg>
+
+      <!-- Root Node -->
+      <div class="node node--root" data-id="root" data-children="build,think,path">
+        <a href="index.html">mido</a>
+      </div>
+
+      <!-- Branch: Build -->
+      <div class="node node--branch node--build" data-id="build" data-parent="root" data-children="analytics,multistore,drop,tshirt,pin2,talabat">
+        <a href="portfolio.html">build</a>
+      </div>
+
+      <!-- Branch: Think -->
+      <div class="node node--branch node--think" data-id="think" data-parent="root" data-children="bottlenecks">
+        <a href="writing.html">think</a>
+      </div>
+
+      <!-- Branch: Path -->
+      <div class="node node--branch node--path" data-id="path" data-parent="root" data-children="shopify-path,amazon-path,rotman,pwc-path,uoft">
+        <a href="history.html">path</a>
+      </div>
+
+      <!-- Build > Projects (flat, no company grouping) -->
+      <div class="node node--leaf node--analytics" data-id="analytics" data-parent="build">
+        <a href="projects/analytics-redesign.html">analytics redesign</a>
+      </div>
+      <div class="node node--leaf node--multistore" data-id="multistore" data-parent="build">
+        <a href="projects/multi-store.html">multi-store</a>
+      </div>
+      <div class="node node--leaf node--drop" data-id="drop" data-parent="build">
+        <a href="projects/the-drop.html">the drop</a>
+      </div>
+      <div class="node node--leaf node--tshirt" data-id="tshirt" data-parent="build">
+        <a href="projects/tshirt-club.html">t-shirt club</a>
+      </div>
+      <div class="node node--leaf node--pin2" data-id="pin2" data-parent="build">
+        <a href="projects/pin2-challenge.html">pin2 challenge</a>
+      </div>
+      <div class="node node--leaf node--talabat" data-id="talabat" data-parent="build">
+        <a href="projects/talabat.html">talabat dd</a>
+      </div>
+
+      <!-- Think > Essays -->
+      <div class="node node--leaf node--bottlenecks" data-id="bottlenecks" data-parent="think">
+        <a href="#">bottlenecks</a>
+      </div>
+
+      <!-- Path > Entries -->
+      <div class="node node--leaf node--shopify-path" data-id="shopify-path" data-parent="path">shopify · 2022–</div>
+      <div class="node node--leaf node--amazon-path" data-id="amazon-path" data-parent="path">amazon · 2017–22</div>
+      <div class="node node--leaf node--rotman" data-id="rotman" data-parent="path">rotman · 2015–17</div>
+      <div class="node node--leaf node--pwc-path" data-id="pwc-path" data-parent="path">pwc · 2009–15</div>
+      <div class="node node--leaf node--uoft" data-id="uoft" data-parent="path">u of t · 2004–08</div>
+
+      <!-- Ambient book quotes -->
+      <div class="ambient-quotes">
+        <div class="ambient-quote">
+          "Knowledge is subtractive, not additive—what we subtract, not what we add."
+          <cite>— Taleb</cite>
+        </div>
+        <div class="ambient-quote">
+          "Procrastination is the soul rebelling against entrapment."
+          <cite>— Taleb</cite>
+        </div>
+        <div class="ambient-quote">
+          "An erudite displays less than he knows; a consultant, the opposite."
+          <cite>— Taleb</cite>
+        </div>
+        <div class="ambient-quote">
+          "The imagination of the genius surpasses his intellect."
+          <cite>— Taleb</cite>
+        </div>
+        <div class="ambient-quote">
+          "It takes wisdom to accept that many things have a logic we do not understand."
+          <cite>— Taleb</cite>
+        </div>
+      </div>
+    </div>
+
+    <!-- Narrative Footer -->
+    <footer class="narrative">
+      <div class="narrative__col">
+        <div class="narrative__title">why a tree?</div>
+        <p>driver trees force clarity. they make you articulate what matters and how it connects. most portfolios are lists—unordered, unconnected. a tree shows hierarchy and relationship.</p>
+      </div>
+      <div class="narrative__col">
+        <div class="narrative__title">decomposition</div>
+        <p>what's the outcome? what drives it? what drives those drivers? keep going until you hit something you can directly influence. this is how i approach every problem.</p>
+      </div>
+      <div class="narrative__col">
+        <div class="narrative__title">the root</div>
+        <p>the root is me. the branches are drivers: what i build, what i think, how i got here. every project, essay, and role is a leaf that ultimately contributes to the whole.</p>
+      </div>
+    </footer>
+
+    <a href="index.html" class="back-link">home</a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const svg = document.querySelector('.graph__lines');
+      const nodes = document.querySelectorAll('.node');
+      const graph = document.querySelector('.graph');
+
+      // Draw lines between connected nodes
+      function drawLines() {
+        // Clear existing lines
+        svg.innerHTML = '';
+
+        // Set SVG size to match container
+        const rect = graph.getBoundingClientRect();
+        svg.setAttribute('viewBox', `0 0 ${rect.width} ${rect.height}`);
+
+        // For each node with a parent, draw a line
+        nodes.forEach(node => {
+          const parentId = node.dataset.parent;
+          if (!parentId) return;
+
+          const parentNode = document.querySelector(`[data-id="${parentId}"]`);
+          if (!parentNode) return;
+
+          const nodeRect = node.getBoundingClientRect();
+          const parentRect = parentNode.getBoundingClientRect();
+          const graphRect = graph.getBoundingClientRect();
+
+          // Calculate positions relative to the graph container
+          const x1 = parentRect.right - graphRect.left;
+          const y1 = parentRect.top + parentRect.height / 2 - graphRect.top;
+          const x2 = nodeRect.left - graphRect.left;
+          const y2 = nodeRect.top + nodeRect.height / 2 - graphRect.top;
+
+          // Create a curved path
+          const midX = (x1 + x2) / 2;
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`);
+          path.classList.add('graph__line');
+          path.dataset.from = parentId;
+          path.dataset.to = node.dataset.id;
+
+          svg.appendChild(path);
+
+          // Fade in
+          requestAnimationFrame(() => {
+            path.classList.add('visible');
+          });
+        });
+      }
+
+      // Fade in nodes
+      function showNodes() {
+        nodes.forEach((node, index) => {
+          setTimeout(() => {
+            node.classList.add('visible');
+          }, index * 50);
+        });
+      }
+
+      // Interactive hover highlighting
+      function setupHoverEffects() {
+        const lines = document.querySelectorAll('.graph__line');
+
+        // Get all ancestors of a node
+        function getAncestors(nodeId) {
+          const ancestors = [];
+          let current = document.querySelector(`[data-id="${nodeId}"]`);
+          while (current) {
+            const parentId = current.dataset.parent;
+            if (parentId) {
+              ancestors.push(parentId);
+              current = document.querySelector(`[data-id="${parentId}"]`);
+            } else {
+              current = null;
+            }
+          }
+          return ancestors;
+        }
+
+        // Get all descendants of a node
+        function getDescendants(nodeId) {
+          const descendants = [];
+          const node = document.querySelector(`[data-id="${nodeId}"]`);
+          if (!node || !node.dataset.children) return descendants;
+
+          const children = node.dataset.children.split(',');
+          children.forEach(childId => {
+            descendants.push(childId);
+            descendants.push(...getDescendants(childId));
+          });
+          return descendants;
+        }
+
+        nodes.forEach(node => {
+          node.addEventListener('mouseenter', () => {
+            const nodeId = node.dataset.id;
+            const ancestors = getAncestors(nodeId);
+            const descendants = getDescendants(nodeId);
+            const relatedNodes = [nodeId, ...ancestors, ...descendants];
+
+            // Highlight related nodes
+            nodes.forEach(n => {
+              if (relatedNodes.includes(n.dataset.id)) {
+                n.classList.add('node--highlight');
+              } else {
+                n.classList.add('node--dim');
+              }
+            });
+
+            // Highlight connected lines
+            lines.forEach(line => {
+              const from = line.dataset.from;
+              const to = line.dataset.to;
+              const isConnected =
+                relatedNodes.includes(from) && relatedNodes.includes(to);
+
+              if (isConnected) {
+                line.classList.add('graph__line--highlight');
+              } else {
+                line.classList.add('graph__line--dim');
+              }
+            });
+          });
+
+          node.addEventListener('mouseleave', () => {
+            nodes.forEach(n => {
+              n.classList.remove('node--highlight', 'node--dim');
+            });
+            lines.forEach(line => {
+              line.classList.remove('graph__line--highlight', 'graph__line--dim');
+            });
+          });
+        });
+      }
+
+      // Initialize
+      showNodes();
+      setTimeout(drawLines, 100);
+      setTimeout(setupHoverEffects, 200);
+
+      // Redraw lines on resize
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(drawLines, 100);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mido Kabbara</title>
-  <meta name="description" content="Product leader who builds systems from scratch. Currently leading analytics at Shopify.">
+  <title>mido kabbara</title>
+  <meta name="description" content="product leader who builds systems from scratch. currently leading analytics at shopify.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,116 +19,38 @@
   <link rel="stylesheet" href="css/pages.css">
 </head>
 <body>
-  <div class="site">
-    <!-- Depth Indicator -->
-    <div class="depth" aria-hidden="true">
-      <div class="depth__bar">
-        <div class="depth__fill" style="height: 25%;"></div>
-      </div>
-      <span class="depth__label">depth: 1</span>
-    </div>
+  <div class="site site--home">
+    <!-- Main Content - Centered Tree -->
+    <main class="site-main site-main--centered">
+      <div class="tree-home">
+        <a href="tree.html" class="tree-home__root">mido kabbara</a>
+        <div class="tree-home__tagline">i build systems that didn't exist before.</div>
 
-    <!-- Header -->
-    <header class="site-header">
-      <div class="container">
-        <nav class="nav">
-          <a href="/" class="nav__name">Mido Kabbara</a>
-          <div class="nav__links">
-            <a href="portfolio.html" class="nav__link">Portfolio</a>
-            <a href="history.html" class="nav__link">History</a>
-            <a href="writing.html" class="nav__link">Writing</a>
-          </div>
+        <nav class="tree-home__branches">
+          <a href="portfolio.html" class="tree-home__branch">
+            <span class="tree-home__connector">├─</span>
+            <span class="tree-home__label">build</span>
+            <span class="tree-home__desc">what i've made</span>
+          </a>
+          <a href="writing.html" class="tree-home__branch">
+            <span class="tree-home__connector">├─</span>
+            <span class="tree-home__label">think</span>
+            <span class="tree-home__desc">ideas & frameworks</span>
+          </a>
+          <a href="history.html" class="tree-home__branch">
+            <span class="tree-home__connector">└─</span>
+            <span class="tree-home__label">path</span>
+            <span class="tree-home__desc">how i got here</span>
+          </a>
         </nav>
+
+        <div class="tree-home__contact">
+          <a href="mailto:mkmido@gmail.com">mkmido@gmail.com</a>
+          <span>·</span>
+          <a href="https://linkedin.com/in/midokabbara">linkedin</a>
+        </div>
       </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="site-main">
-      <section class="section section--hero">
-        <div class="container">
-          <div class="hero">
-            <h1 class="hero__title">I build systems that didn't exist before.</h1>
-            <p class="hero__subtitle">
-              Product leader at Shopify, building analytics for millions of merchants.
-              Previously Amazon (Fashion, Subscriptions, Healthcare) and PwC (Strategy).
-            </p>
-            <div class="hero__links">
-              <a href="portfolio.html" class="btn">View work</a>
-              <a href="history.html" class="btn btn--secondary">My history</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Featured Work Preview -->
-      <section class="section">
-        <div class="container">
-          <h2 class="portfolio__section-title">Selected Work</h2>
-          <div class="grid grid--2">
-            <!-- Card 1 -->
-            <article class="card">
-              <div class="card__image">
-                <!-- Placeholder for image -->
-              </div>
-              <div class="card__content">
-                <h3 class="card__title">Analytics Redesign</h3>
-                <p class="card__meta">Shopify · 2024</p>
-                <div class="card__metrics">
-                  <div class="metric">
-                    <span class="metric__value">4M+</span>
-                    <span class="metric__label">merchants</span>
-                  </div>
-                  <div class="metric">
-                    <span class="metric__value">First</span>
-                    <span class="metric__label">principles rebuild</span>
-                  </div>
-                </div>
-                <span class="card__cta">Drill down</span>
-              </div>
-            </article>
-
-            <!-- Card 2 -->
-            <article class="card">
-              <div class="card__image">
-                <!-- Placeholder for image -->
-              </div>
-              <div class="card__content">
-                <h3 class="card__title">The Drop</h3>
-                <p class="card__meta">Amazon · 2019</p>
-                <div class="card__metrics">
-                  <div class="metric">
-                    <span class="metric__value">0→1</span>
-                    <span class="metric__label">demand system</span>
-                  </div>
-                  <div class="metric">
-                    <span class="metric__value">Global</span>
-                    <span class="metric__label">launch</span>
-                  </div>
-                </div>
-                <span class="card__cta">Drill down</span>
-              </div>
-            </article>
-          </div>
-
-          <div style="margin-top: var(--space-8);">
-            <a href="portfolio.html" class="link">View all projects →</a>
-          </div>
-        </div>
-      </section>
     </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="container">
-        <div class="divider"></div>
-        <p class="text-sm text-muted">
-          <a href="mailto:mido@midokabbara.com" class="link">mido@midokabbara.com</a>
-          · <a href="https://linkedin.com/in/midokabbara" class="link">LinkedIn</a>
-        </p>
-      </div>
-    </footer>
   </div>
-
-  <script src="js/scroll.js"></script>
 </body>
 </html>

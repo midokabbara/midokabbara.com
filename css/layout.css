@@ -14,8 +14,8 @@ body {
   max-width: var(--max-width-content);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-6);
-  padding-right: var(--space-6);
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
 }
 
 .container--wide {
@@ -33,35 +33,70 @@ body {
   min-height: 100vh;
 }
 
+/* Home page - centered layout */
+.site--home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .site-header {
-  padding-top: var(--space-8);
-  padding-bottom: var(--space-8);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
 }
 
 .site-main {
   flex: 1;
+  /* Offset for left panel - tighter gap */
+  margin-left: var(--left-panel-width);
+  padding-top: var(--space-8);
+}
+
+/* Left-align container when driver tree present, with gap */
+.site-main .container {
+  margin-left: var(--space-16);
+}
+
+/* Centered main for home */
+.site-main--centered {
+  margin-left: 0;
+  padding-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .site-footer {
-  padding-top: var(--space-12);
-  padding-bottom: var(--space-8);
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-6);
+  margin-left: var(--left-panel-width);
+}
+
+/* No offset for home footer */
+.site--home .site-footer {
+  margin-left: 0;
+}
+
+/* Anchor scroll offset */
+[id] {
+  scroll-margin-top: var(--space-8);
 }
 
 /* Sections */
 .section {
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-16);
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
 }
 
 .section--hero {
-  padding-top: var(--space-24);
-  padding-bottom: var(--space-24);
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
 }
 
 /* Grid - Portfolio */
 .grid {
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-4);
 }
 
 .grid--2 {
@@ -91,6 +126,16 @@ body {
 }
 
 /* Responsive */
+@media (max-width: 900px) {
+  .site-main {
+    margin-left: 0;
+  }
+
+  .site-footer {
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding-left: var(--space-4);
@@ -103,20 +148,19 @@ body {
   }
 
   .section {
-    padding-top: var(--space-12);
-    padding-bottom: var(--space-12);
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
   }
 
   .section--hero {
-    padding-top: var(--space-16);
-    padding-bottom: var(--space-16);
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
   }
 }
 
 @media (max-width: 480px) {
   :root {
-    --text-3xl: 2rem;
-    --text-2xl: 1.5rem;
-    --text-xl: 1.25rem;
+    --text-2xl: 1.25rem;
+    --text-xl: 1rem;
   }
 }

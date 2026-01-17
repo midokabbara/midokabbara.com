@@ -1,0 +1,24 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .hand { stroke: #555; stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .hand-light { stroke: #888; stroke-width: 0.8; fill: none; stroke-linecap: round; }
+  </style>
+  <!-- Wobbly Y axis -->
+  <path class="hand" d="M52 148 Q51 120 53 90 Q52 70 51 52" />
+  <path class="hand" d="M49 56 L51 50 L54 55" />
+  <!-- Wobbly X axis -->
+  <path class="hand" d="M48 151 Q120 150 180 152 Q220 150 248 151" />
+  <path class="hand" d="M244 148 L250 151 L243 154" />
+  <!-- Rough bars -->
+  <path class="hand" d="M72 148 L71 102 Q73 100 82 101 Q94 100 95 102 L96 149" />
+  <path class="hand" d="M112 149 L111 82 Q114 79 125 80 Q134 79 136 82 L137 148" />
+  <path class="hand" d="M152 150 L150 62 Q154 59 164 60 Q174 59 176 63 L178 149" />
+  <path class="hand" d="M192 149 L191 92 Q194 89 205 90 Q214 88 216 92 L217 150" />
+  <!-- Rough trend line -->
+  <path class="hand-light" d="M83 96 Q105 82 125 76 Q150 68 165 58 Q190 52 210 62 Q225 68 235 72" />
+  <!-- Rough dots -->
+  <circle class="hand" cx="83" cy="97" r="4" />
+  <circle class="hand" cx="125" cy="76" r="4" />
+  <circle class="hand" cx="165" cy="58" r="4" />
+  <circle class="hand" cx="205" cy="62" r="4" />
+</svg>

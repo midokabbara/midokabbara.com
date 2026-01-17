@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio · Mido Kabbara</title>
-  <meta name="description" content="Work projects and explorations from Shopify, Amazon, and beyond.">
+  <title>build · mido kabbara</title>
+  <meta name="description" content="systems i've built at shopify, amazon, and pwc.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,138 +20,194 @@
 </head>
 <body>
   <div class="site">
-    <!-- Depth Indicator -->
-    <div class="depth" aria-hidden="true">
-      <div class="depth__bar">
-        <div class="depth__fill" style="height: 50%;"></div>
-      </div>
-      <span class="depth__label">depth: 2</span>
-    </div>
-
-    <!-- Header -->
-    <header class="site-header">
-      <div class="container">
-        <nav class="nav">
-          <a href="/" class="nav__name">Mido Kabbara</a>
-          <div class="nav__links">
-            <a href="portfolio.html" class="nav__link nav__link--active">Portfolio</a>
-            <a href="history.html" class="nav__link">History</a>
-            <a href="writing.html" class="nav__link">Writing</a>
+    <!-- Persistent Left Panel - Driver Tree -->
+    <nav class="driver-tree" aria-label="site map">
+      <a href="index.html" class="driver-tree__root">mido</a>
+      <div class="driver-tree__branches">
+        <div class="driver-tree__branch driver-tree__branch--active">
+          <a href="portfolio.html">├─ build</a>
+          <div class="driver-tree__sub">
+            <div class="driver-tree__leaf"><a href="#analytics-redesign">├─ analytics redesign</a></div>
+            <div class="driver-tree__leaf"><a href="#multi-store">├─ multi-store</a></div>
+            <div class="driver-tree__leaf"><a href="#the-drop">├─ the drop</a></div>
+            <div class="driver-tree__leaf"><a href="#tshirt-club">├─ t-shirt club</a></div>
+            <div class="driver-tree__leaf"><a href="#pin2">├─ pin2 challenge</a></div>
+            <div class="driver-tree__leaf"><a href="#talabat">└─ talabat</a></div>
           </div>
-        </nav>
+        </div>
+        <div class="driver-tree__branch">
+          <a href="writing.html">├─ think</a>
+        </div>
+        <div class="driver-tree__branch">
+          <a href="history.html">└─ path</a>
+        </div>
       </div>
-    </header>
+    </nav>
 
     <!-- Main Content -->
     <main class="site-main">
       <section class="section">
         <div class="container">
-          <div class="portfolio__header">
-            <h1>Portfolio</h1>
-            <p class="text-muted" style="margin-top: var(--space-2);">Systems I've built across different contexts.</p>
+
+          <div class="location">
+            <a href="index.html" class="location__back">mido</a>
+            <span class="location__sep">/</span>
+            <span class="location__current">build</span>
           </div>
 
-          <!-- Work Projects -->
-          <div class="portfolio__section">
-            <h2 class="portfolio__section-title">Work Projects</h2>
+          <div class="portfolio__header">
+            <h1>build</h1>
+            <p class="text-muted">systems that didn't exist before.</p>
+          </div>
+
+          <!-- Shopify -->
+          <div class="portfolio__section" id="shopify">
+            <h2 class="portfolio__section-title">shopify</h2>
             <div class="grid grid--2">
-              <!-- Analytics Redesign -->
-              <article class="card">
-                <div class="card__image"></div>
+              <a href="projects/analytics-redesign.html" class="card" id="analytics-redesign">
+                <div class="card__image">
+                  <img src="assets/sketch-analytics.svg" alt="Analytics chart sketch">
+                </div>
                 <div class="card__content">
-                  <h3 class="card__title">Analytics Redesign</h3>
-                  <p class="card__meta">Shopify · 2024</p>
+                  <h3 class="card__title">analytics redesign</h3>
+                  <p class="card__meta">2024 · senior staff pm</p>
                   <div class="card__metrics">
                     <div class="metric">
                       <span class="metric__value">4M+</span>
                       <span class="metric__label">merchants</span>
                     </div>
                     <div class="metric">
-                      <span class="metric__value">First</span>
-                      <span class="metric__label">principles rebuild</span>
+                      <span class="metric__value">first</span>
+                      <span class="metric__label">principles</span>
                     </div>
                   </div>
-                  <span class="card__cta">Drill down</span>
+                  <span class="card__cta">drill down</span>
                 </div>
-              </article>
+              </a>
 
-              <!-- Multi-Store Reporting -->
-              <article class="card">
-                <div class="card__image"></div>
+              <a href="projects/multi-store.html" class="card" id="multi-store">
+                <div class="card__image">
+                  <img src="assets/sketch-multistore.svg" alt="Multi-store dashboard sketch">
+                </div>
                 <div class="card__content">
-                  <h3 class="card__title">Multi-Store Reporting</h3>
-                  <p class="card__meta">Shopify · 2024</p>
+                  <h3 class="card__title">multi-store reporting</h3>
+                  <p class="card__meta">2025 · senior staff pm</p>
                   <div class="card__metrics">
                     <div class="metric">
-                      <span class="metric__value">Plus</span>
+                      <span class="metric__value">plus</span>
                       <span class="metric__label">enterprise</span>
                     </div>
                     <div class="metric">
-                      <span class="metric__value">Top 5</span>
+                      <span class="metric__value">top 5</span>
                       <span class="metric__label">pain point</span>
                     </div>
                   </div>
-                  <span class="card__cta">Drill down</span>
+                  <span class="card__cta">drill down</span>
                 </div>
-              </article>
+              </a>
+            </div>
+          </div>
 
-              <!-- The Drop -->
-              <article class="card">
-                <div class="card__image"></div>
+          <!-- Amazon -->
+          <div class="portfolio__section" id="amazon">
+            <h2 class="portfolio__section-title">amazon</h2>
+            <div class="grid grid--2">
+              <a href="projects/the-drop.html" class="card" id="the-drop">
+                <div class="card__image">
+                  <img src="assets/sketch-drop.svg" alt="Made-to-order demand sketch">
+                </div>
                 <div class="card__content">
-                  <h3 class="card__title">The Drop</h3>
-                  <p class="card__meta">Amazon · 2019</p>
+                  <h3 class="card__title">the drop</h3>
+                  <p class="card__meta">2018–2019 · sr pm, fashion</p>
                   <div class="card__metrics">
                     <div class="metric">
                       <span class="metric__value">0→1</span>
                       <span class="metric__label">demand system</span>
                     </div>
                     <div class="metric">
-                      <span class="metric__value">Global</span>
+                      <span class="metric__value">global</span>
                       <span class="metric__label">launch</span>
                     </div>
                   </div>
-                  <span class="card__cta">Drill down</span>
+                  <span class="card__cta">drill down</span>
                 </div>
-              </article>
+              </a>
 
-              <!-- T-Shirt Club -->
-              <article class="card">
-                <div class="card__image"></div>
+              <a href="projects/tshirt-club.html" class="card" id="tshirt-club">
+                <div class="card__image">
+                  <img src="assets/sketch-tshirt.svg" alt="Subscription box sketch">
+                </div>
                 <div class="card__content">
-                  <h3 class="card__title">T-Shirt Club</h3>
-                  <p class="card__meta">Amazon · 2020</p>
+                  <h3 class="card__title">t-shirt club</h3>
+                  <p class="card__meta">2019–2021 · sr pm, subscriptions</p>
                   <div class="card__metrics">
                     <div class="metric">
                       <span class="metric__value">$XM</span>
                       <span class="metric__label">year one</span>
                     </div>
                     <div class="metric">
-                      <span class="metric__value">WWE, MTV</span>
-                      <span class="metric__label">licensing</span>
+                      <span class="metric__value">e2e</span>
+                      <span class="metric__label">ownership</span>
                     </div>
                   </div>
-                  <span class="card__cta">Drill down</span>
+                  <span class="card__cta">drill down</span>
                 </div>
-              </article>
+              </a>
+            </div>
+          </div>
+
+          <!-- PwC -->
+          <div class="portfolio__section" id="pwc">
+            <h2 class="portfolio__section-title">pwc</h2>
+            <div class="grid grid--2">
+              <a href="projects/pin2-challenge.html" class="card" id="pin2">
+                <div class="card__image">
+                  <img src="assets/sketch-pin2.svg" alt="Innovation challenge sketch">
+                </div>
+                <div class="card__content">
+                  <h3 class="card__title">the pin2 challenge</h3>
+                  <p class="card__meta">2012–2015 · kuwait</p>
+                  <div class="card__metrics">
+                    <div class="metric">
+                      <span class="metric__value">0→1</span>
+                      <span class="metric__label">created</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric__value">global</span>
+                      <span class="metric__label">flagship csr</span>
+                    </div>
+                  </div>
+                  <span class="card__cta">drill down</span>
+                </div>
+              </a>
+
+              <a href="projects/talabat.html" class="card" id="talabat">
+                <div class="card__image">
+                  <img src="assets/sketch-talabat.svg" alt="Due diligence sketch">
+                </div>
+                <div class="card__content">
+                  <h3 class="card__title">talabat due diligence</h3>
+                  <p class="card__meta">2015 · $160M acquisition</p>
+                  <div class="card__metrics">
+                    <div class="metric">
+                      <span class="metric__value">led</span>
+                      <span class="metric__label">financial dd</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric__value">now</span>
+                      <span class="metric__label">#1 in region</span>
+                    </div>
+                  </div>
+                  <span class="card__cta">drill down</span>
+                </div>
+              </a>
             </div>
           </div>
 
           <!-- Explorations -->
           <div class="portfolio__section">
-            <h2 class="portfolio__section-title">Explorations</h2>
-            <p class="text-muted text-sm" style="margin-bottom: var(--space-6);">AI projects and experiments. Coming soon.</p>
-            <div class="grid grid--2">
-              <!-- Placeholder -->
-              <article class="card" style="opacity: 0.5;">
-                <div class="card__image"></div>
-                <div class="card__content">
-                  <h3 class="card__title">Project Name</h3>
-                  <p class="card__meta">AI · 2025</p>
-                  <span class="tag">Coming soon</span>
-                </div>
-              </article>
-            </div>
+            <h2 class="portfolio__section-title">explorations</h2>
+            <p class="text-muted text-sm" style="margin-bottom: var(--space-4);">ai projects and experiments. coming soon.</p>
           </div>
 
         </div>
@@ -163,8 +219,8 @@
       <div class="container">
         <div class="divider"></div>
         <p class="text-sm text-muted">
-          <a href="mailto:mido@midokabbara.com" class="link">mido@midokabbara.com</a>
-          · <a href="https://linkedin.com/in/midokabbara" class="link">LinkedIn</a>
+          <a href="mailto:mkmido@gmail.com" class="link">mkmido@gmail.com</a>
+          · <a href="https://linkedin.com/in/midokabbara" class="link">linkedin</a>
         </p>
       </div>
     </footer>

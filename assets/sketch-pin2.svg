@@ -1,0 +1,26 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .hand { stroke: #555; stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .hand-light { stroke: #888; stroke-width: 0.8; fill: none; stroke-linecap: round; }
+  </style>
+  <!-- Rough people heads -->
+  <ellipse class="hand" cx="80" cy="72" rx="13" ry="12" />
+  <ellipse class="hand" cx="160" cy="72" rx="13" ry="12" />
+  <ellipse class="hand" cx="240" cy="72" rx="13" ry="12" />
+  <!-- Rough bodies -->
+  <path class="hand" d="M64 102 Q65 88 80 86 Q95 88 96 102" />
+  <path class="hand" d="M144 102 Q145 88 160 86 Q175 88 176 102" />
+  <path class="hand" d="M224 102 Q225 88 240 86 Q255 88 256 102" />
+  <!-- Rough lightbulb -->
+  <path class="hand" d="M148 132 Q150 118 160 112 Q170 118 172 132" />
+  <path class="hand" d="M160 132 Q161 145 160 152" />
+  <path class="hand-light" d="M154 152 Q160 153 166 152" />
+  <path class="hand-light" d="M155 157 Q160 158 165 157" />
+  <!-- Rough spark lines -->
+  <path class="hand-light" d="M160 102 Q161 108 160 114" />
+  <path class="hand-light" d="M145 114 Q149 118 152 120" />
+  <path class="hand-light" d="M175 114 Q171 118 168 120" />
+  <!-- Rough trophy -->
+  <path class="hand" d="M238 128 Q248 118 260 128 Q262 140 260 148 L256 152 L244 152 L240 148 Q238 140 240 128" />
+  <path class="hand-light" d="M246 158 Q250 157 254 158 L252 168 Q250 169 248 168 L246 158" />
+</svg>

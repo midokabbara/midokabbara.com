@@ -1,0 +1,21 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .hand { stroke: #555; stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .hand-light { stroke: #888; stroke-width: 0.8; fill: none; stroke-linecap: round; }
+  </style>
+  <!-- Rough T-shirt shape -->
+  <path class="hand" d="M98 62 Q82 61 62 80 Q70 86 76 86 L77 128 Q100 130 143 128 L144 86 Q150 86 158 80 Q140 62 122 62" />
+  <path class="hand" d="M98 62 Q99 58 110 52 Q115 58 120 62" />
+  <!-- Rough arrow -->
+  <path class="hand" d="M172 98 Q185 97 190 98 Q200 97 212 98" />
+  <path class="hand" d="M204 90 Q212 97 204 106" />
+  <!-- Rough order document -->
+  <path class="hand" d="M223 67 Q227 63 273 65 Q277 68 275 123 Q273 127 227 125 Q223 122 225 67" />
+  <path class="hand-light" d="M235 82 Q250 81 263 82" />
+  <path class="hand-light" d="M235 96 Q250 95 263 96" />
+  <path class="hand-light" d="M235 110 Q248 109 255 110" />
+  <!-- Rough clock -->
+  <ellipse class="hand" cx="250" cy="152" rx="16" ry="15" />
+  <path class="hand" d="M250 152 Q250 144 251 141" />
+  <path class="hand" d="M250 152 Q256 155 259 157" />
+</svg>

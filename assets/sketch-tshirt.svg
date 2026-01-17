@@ -1,0 +1,23 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .hand { stroke: #555; stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .hand-light { stroke: #888; stroke-width: 0.8; fill: none; stroke-linecap: round; }
+  </style>
+  <!-- Rough box/package -->
+  <path class="hand" d="M58 82 Q60 78 62 80 L62 148 Q100 152 138 148 L138 82 Q102 56 62 82" />
+  <path class="hand" d="M62 82 Q80 92 100 104 Q120 92 138 82" />
+  <path class="hand-light" d="M100 104 Q101 128 100 148" />
+  <!-- Rough recurring arrows -->
+  <path class="hand" d="M168 88 Q180 78 195 84 Q212 95 200 118" />
+  <path class="hand" d="M200 118 L206 112 M200 118 L194 113" />
+  <path class="hand" d="M200 124 Q188 134 173 128 Q156 117 168 94" />
+  <path class="hand" d="M168 94 L162 100 M168 94 L174 99" />
+  <!-- Rough calendar -->
+  <path class="hand" d="M218 72 Q222 68 278 70 Q282 73 280 128 Q278 132 222 130 Q218 127 220 72" />
+  <path class="hand-light" d="M218 92 Q250 91 280 92" />
+  <path class="hand-light" d="M240 70 Q241 100 240 130" />
+  <path class="hand-light" d="M260 70 Q261 100 260 130" />
+  <!-- Rough check marks -->
+  <path class="hand" d="M226 102 L230 108 L238 96" />
+  <path class="hand" d="M246 102 L250 108 L258 96" />
+</svg>

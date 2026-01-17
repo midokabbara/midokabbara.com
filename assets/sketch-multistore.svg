@@ -1,0 +1,25 @@
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .hand { stroke: #555; stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .hand-light { stroke: #888; stroke-width: 0.8; fill: none; stroke-linecap: round; }
+  </style>
+  <!-- Rough store boxes -->
+  <path class="hand" d="M48 52 Q52 48 108 50 Q112 52 110 92 Q108 96 52 94 Q48 92 50 52" />
+  <path class="hand" d="M128 50 Q132 47 188 49 Q192 51 190 91 Q188 95 132 93 Q128 91 130 51" />
+  <path class="hand" d="M208 51 Q212 48 268 50 Q272 52 270 92 Q268 96 212 94 Q208 92 210 52" />
+  <!-- Rough house icons -->
+  <path class="hand-light" d="M68 78 L68 88 Q78 89 88 88 L88 78 L78 68 L68 78" />
+  <path class="hand-light" d="M148 77 L148 87 Q158 88 168 87 L168 77 L158 67 L148 77" />
+  <path class="hand-light" d="M228 78 L228 88 Q238 89 248 88 L248 78 L238 68 L228 78" />
+  <!-- Rough connecting lines -->
+  <path class="hand" d="M79 96 Q80 108 81 115 Q100 116 158 117" />
+  <path class="hand" d="M159 95 Q160 106 159 117" />
+  <path class="hand" d="M239 96 Q240 108 241 115 Q220 116 162 117" />
+  <!-- Rough central dashboard -->
+  <path class="hand" d="M108 127 Q112 123 208 125 Q212 128 210 172 Q208 176 112 174 Q108 171 110 127" />
+  <!-- Rough bar lines -->
+  <path class="hand-light" d="M128 158 Q127 145 129 142" />
+  <path class="hand-light" d="M148 158 Q147 150 149 148" />
+  <path class="hand-light" d="M168 158 Q167 140 169 138" />
+  <path class="hand-light" d="M188 158 Q187 152 189 150" />
+</svg>

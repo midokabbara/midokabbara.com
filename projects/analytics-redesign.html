@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Analytics Redesign · Mido Kabbara</title>
-  <meta name="description" content="Ground-up redesign of Shopify's analytics platform for 4M+ merchants.">
+  <title>analytics redesign · mido kabbara</title>
+  <meta name="description" content="ground-up redesign of shopify's analytics platform for millions of merchants.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,42 +20,50 @@
 </head>
 <body>
   <div class="site">
-    <!-- Depth Indicator -->
-    <div class="depth" aria-hidden="true">
-      <div class="depth__bar">
-        <div class="depth__fill" style="height: 75%;"></div>
-      </div>
-      <span class="depth__label">depth: 3</span>
-    </div>
-
-    <!-- Header -->
-    <header class="site-header">
-      <div class="container">
-        <nav class="nav">
-          <a href="../index.html" class="nav__name">Mido Kabbara</a>
-          <div class="nav__links">
-            <a href="../portfolio.html" class="nav__link nav__link--active">Portfolio</a>
-            <a href="../history.html" class="nav__link">History</a>
-            <a href="../writing.html" class="nav__link">Writing</a>
+    <!-- Persistent Left Panel - Driver Tree -->
+    <nav class="driver-tree" aria-label="site map">
+      <a href="../index.html" class="driver-tree__root">mido</a>
+      <div class="driver-tree__branches">
+        <div class="driver-tree__branch driver-tree__branch--active">
+          <a href="../portfolio.html">├─ build</a>
+          <div class="driver-tree__sub">
+            <div class="driver-tree__leaf driver-tree__leaf--active"><span>├─ analytics redesign</span></div>
+            <div class="driver-tree__leaf"><a href="multi-store.html">├─ multi-store</a></div>
+            <div class="driver-tree__leaf"><a href="the-drop.html">├─ the drop</a></div>
+            <div class="driver-tree__leaf"><a href="tshirt-club.html">├─ t-shirt club</a></div>
+            <div class="driver-tree__leaf"><a href="pin2-challenge.html">├─ pin2 challenge</a></div>
+            <div class="driver-tree__leaf"><a href="talabat.html">└─ talabat</a></div>
           </div>
-        </nav>
+        </div>
+        <div class="driver-tree__branch">
+          <a href="../writing.html">├─ think</a>
+        </div>
+        <div class="driver-tree__branch">
+          <a href="../history.html">└─ path</a>
+        </div>
       </div>
-    </header>
+    </nav>
 
     <!-- Main Content -->
     <main class="site-main">
       <section class="section">
         <div class="container">
+
+          <div class="location">
+            <a href="../index.html" class="location__back">mido</a>
+            <span class="location__sep">/</span>
+            <a href="../portfolio.html" class="location__link">build</a>
+            <span class="location__sep">/</span>
+            <span class="location__current">analytics</span>
+          </div>
+
           <article class="project">
             <header class="project__header">
-              <p class="text-sm text-muted" style="margin-bottom: var(--space-2);">
-                <a href="../portfolio.html" class="link">← Portfolio</a>
-              </p>
-              <h1 class="project__title">Analytics Redesign</h1>
+              <h1 class="project__title">analytics redesign</h1>
               <div class="project__meta">
-                <span>Shopify</span>
+                <span>shopify</span>
                 <span>2024</span>
-                <span>Product Lead</span>
+                <span>senior staff pm</span>
               </div>
             </header>
 
@@ -65,8 +73,8 @@
                 <span class="metric__label">merchants</span>
               </div>
               <div class="metric">
-                <span class="metric__value">First</span>
-                <span class="metric__label">principles rebuild</span>
+                <span class="metric__value">first</span>
+                <span class="metric__label">principles</span>
               </div>
               <div class="metric">
                 <span class="metric__value">#1</span>
@@ -75,44 +83,55 @@
             </div>
 
             <div class="project__content">
-              <h2>Context</h2>
+              <h2>the problem</h2>
               <p>
-                Analytics was consistently the #1 pain point for Shopify merchants. The existing system was built incrementally over years—a collection of rigid reports that couldn't answer the questions merchants actually had.
+                shopify's analytics was rigid—predefined reports, limited customization. merchants couldn't explore their own questions. this was the #1 analytics pain point.
               </p>
               <p>
-                Merchants needed to understand their business, but the tools forced them into predefined boxes. Want to see conversion rate by traffic source for the last 90 days? That exact combination didn't exist.
+                the old model assumed shopify knew what was important. merchants were stuck in boxes we created. want to see conversion rate by traffic source for the last 90 days? that exact combination didn't exist.
               </p>
 
-              <h2>Approach</h2>
+              <h2>the approach</h2>
               <p>
-                Rather than adding more reports, we went back to first principles: what decisions are merchants trying to make?
+                rather than adding more reports, we went back to first principles: what decisions are merchants trying to make?
               </p>
               <p>
-                The answer: they need to explore their data, not just view reports. This led to three fundamental shifts:
+                the answer: they need to explore their data, not just view reports. this led to three fundamental shifts:
               </p>
               <ul>
-                <li><strong>Customizable dashboards</strong> — Merchants build their own views</li>
-                <li><strong>Exploratory data access</strong> — Drill into any metric, slice by any dimension</li>
-                <li><strong>ShopifyQL for power users</strong> — Query language for advanced analysis</li>
+                <li><strong>customizable dashboards</strong> — merchants build their own views</li>
+                <li><strong>exploratory data access</strong> — drill into any metric, slice by any dimension</li>
+                <li><strong>shopifyql for power users</strong> — query language for advanced analysis</li>
               </ul>
 
-              <h2>Outcome</h2>
+              <h2>what i built</h2>
               <p>
-                Shipped to all 4M+ merchants. Moved from a report-centric model to an exploration-centric one. Merchants can now answer their own questions without waiting for us to build specific reports.
+                i owned the redesign from vision to ship:
               </p>
-
-              <h2>What I did</h2>
               <ul>
-                <li>Led product strategy and vision</li>
-                <li>Defined the three-shift framework that guided development</li>
-                <li>Worked with engineering to design flexible data architecture</li>
-                <li>Shipped iteratively while maintaining backwards compatibility</li>
+                <li>defined product vision: shift from "reports we give you" to "tools to answer your own questions"</li>
+                <li>designed system architecture: customizable dashboards, drag-and-drop metrics, saved configurations</li>
+                <li>integrated shopifyql for power users who want direct data access</li>
+                <li>led cross-functional execution across design, engineering, data platform teams</li>
+                <li>shipped to ALL shopify merchants (not a beta or subset)</li>
               </ul>
+
+              <h2>the outcome</h2>
+              <p>
+                rolled out to millions of merchants globally, summer 2024. replaced the entire previous analytics experience. merchants can now answer their own questions without waiting for us to build specific reports.
+              </p>
 
               <div class="divider"></div>
-              <p class="text-sm text-muted">
-                <a href="../portfolio.html" class="link">← Back to portfolio</a>
+
+              <h2>connections</h2>
+              <p class="text-muted text-sm">
+                this project connects to:
               </p>
+              <ul class="text-sm">
+                <li><a href="multi-store.html" class="link">multi-store reporting</a> — built on the same platform foundation</li>
+                <li><a href="../history.html" class="link">path → shopify</a> — part of my current role</li>
+              </ul>
+
             </div>
           </article>
         </div>
@@ -124,8 +143,8 @@
       <div class="container">
         <div class="divider"></div>
         <p class="text-sm text-muted">
-          <a href="mailto:mido@midokabbara.com" class="link">mido@midokabbara.com</a>
-          · <a href="https://linkedin.com/in/midokabbara" class="link">LinkedIn</a>
+          <a href="mailto:mkmido@gmail.com" class="link">mkmido@gmail.com</a>
+          · <a href="https://linkedin.com/in/midokabbara" class="link">linkedin</a>
         </p>
       </div>
     </footer>

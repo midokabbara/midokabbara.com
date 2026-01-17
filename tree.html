@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the full tree · mido kabbara</title>
+  <meta name="description" content="a visual decomposition of everything i've built, thought, and experienced.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-mono);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Full takeover - sprawling canvas */
+    .tree-takeover {
+      min-height: 100vh;
+      min-width: 100vw;
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Main tree area - natural height */
+    .tree-main {
+      flex: 0 0 auto;
+    }
+
+    /* The sprawling tree */
+    .tree {
+      font-size: var(--text-xs);
+      line-height: 1.9;
+      white-space: nowrap;
+    }
+
+    /* Back to home link - top of page like metric takeover */
+    .tree__back {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: var(--space-6);
+      display: inline-block;
+    }
+
+    .tree__back:hover {
+      color: var(--text);
+    }
+
+    .tree__back::before {
+      content: '\2190 ';
+    }
+
+    /* Horizontal root layout */
+    .tree__root-row {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .tree__root {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    /* Branch containers */
+    .tree__level {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tree__row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: var(--space-4);
+    }
+
+    .tree__row:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Connectors */
+    .c {
+      color: var(--border);
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .c-dark {
+      color: var(--text-muted);
+    }
+
+    /* Labels */
+    .label {
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .label:hover {
+      color: var(--text-muted);
+    }
+
+    .desc {
+      color: var(--text-muted);
+    }
+
+    .dots {
+      color: var(--border);
+      user-select: none;
+    }
+
+    /* Leaf items */
+    .leaf {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .leaf:hover {
+      color: var(--text);
+    }
+
+    .leaf-text {
+      color: var(--text-muted);
+    }
+
+    /* Nested children - indented and inline */
+    .children {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: top;
+      margin-left: var(--space-2);
+    }
+
+    .children--inline {
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    /* Overflow pattern: +N more */
+    .overflow-hidden {
+      display: none;
+    }
+
+    .overflow-more {
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: var(--text-xs);
+    }
+
+    .overflow-more:hover {
+      color: var(--text);
+    }
+
+    [data-overflow-expanded="true"] .overflow-hidden {
+      display: block;
+    }
+
+    [data-overflow-expanded="true"] .overflow-more {
+      display: none;
+    }
+
+    /* Expandable */
+    .expandable {
+      cursor: pointer;
+    }
+
+    .expandable:hover > .leaf-text,
+    .expandable:hover > .label {
+      color: var(--text);
+    }
+
+    .expandable > .expanded {
+      display: none;
+    }
+
+    .expandable[data-expanded="true"] > .expanded {
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    .expandable[data-expanded="true"] > .leaf-text,
+    .expandable[data-expanded="true"] > .label {
+      color: var(--text);
+    }
+
+    /* Ideas (tags) under books */
+    .idea-tag {
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .idea-tag:hover {
+      color: var(--text-muted);
+    }
+
+    /* Parent span allows quote-cards to expand */
+    span:has(> .idea-tag) {
+      display: block;
+    }
+
+    /* Quote cards - full viewport scroll while staying in tree flow */
+    .quote-cards {
+      display: none;
+      flex-direction: row;
+      gap: var(--space-3);
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      padding: var(--space-3) 0;
+      padding-right: 4rem;
+      margin-top: var(--space-1);
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+    }
+
+    .quote-cards::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
+    .idea-tag[data-expanded="true"] + .quote-cards {
+      display: flex;
+    }
+
+    .quote-card {
+      flex-shrink: 0;
+      width: 280px;
+      padding: var(--space-3);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: var(--text-xs);
+      line-height: 1.6;
+      color: var(--text-muted);
+      white-space: normal;
+    }
+
+    .quote-card:hover {
+      border-color: var(--text-muted);
+    }
+
+    /* Hidden/treasure items - very faded until discovered */
+    .hidden-branch {
+      opacity: 0.08;
+      transition: opacity 400ms ease;
+    }
+
+    .hidden-branch:hover {
+      opacity: 0.6;
+    }
+
+    .hidden-branch[data-revealed="true"] {
+      opacity: 1;
+    }
+
+    .hidden-branch .label,
+    .hidden-branch .leaf-text {
+      color: var(--text-muted);
+    }
+
+    .hidden-branch:hover .label,
+    .hidden-branch:hover .leaf-text {
+      color: var(--text);
+    }
+
+    /* Metric decomposition styling */
+    .metric {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+    }
+
+    .metric-note {
+      font-size: 10px;
+      color: var(--border);
+      max-width: 40ch;
+      white-space: normal;
+    }
+
+    /* Metric takeover mode */
+    .metric-takeover {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 1000;
+      padding: var(--space-8);
+      overflow: auto;
+    }
+
+    .metric-takeover.active {
+      display: block;
+    }
+
+    .metric-takeover__back {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: var(--space-6);
+      display: inline-block;
+    }
+
+    .metric-takeover__back:hover {
+      color: var(--text);
+    }
+
+    .metric-takeover__back::before {
+      content: '\2190 ';
+    }
+
+    .metric-takeover__title {
+      font-size: var(--text-2xl);
+      font-weight: 500;
+      margin-bottom: var(--space-4);
+    }
+
+    .metric-takeover__tree {
+      font-size: var(--text-xs);
+      line-height: 1.8;
+      padding-bottom: var(--space-8);
+    }
+
+    .metric-takeover__tree .c {
+      color: var(--border);
+    }
+
+    .metric-takeover__tree .note {
+      color: var(--text-muted);
+      font-size: var(--text-xs);
+    }
+
+    /* Driver tree - left to right, same visual language as main tree */
+    .driver {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .driver__node {
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .driver__children {
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    /* Top-level branches get spacing between them */
+    .driver > .driver__children > .driver__child {
+      margin-bottom: var(--space-3);
+    }
+
+    .driver > .driver__children > .driver__child:last-child {
+      margin-bottom: 0;
+    }
+
+    .driver__child {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .driver__leaf {
+      color: var(--text-muted);
+    }
+
+    /* Overflow: +N more */
+    .driver__more {
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: var(--text-xs);
+    }
+
+    .driver__more:hover {
+      color: var(--text);
+    }
+
+    .driver__hidden {
+      display: none;
+    }
+
+    .driver__children[data-expanded="true"] .driver__hidden {
+      display: flex;
+    }
+
+    .driver__children[data-expanded="true"] .driver__more {
+      display: none;
+    }
+
+    /* Section spacing */
+    .section-gap {
+      margin-top: var(--space-1);
+    }
+
+    /* Narrative footer - flows naturally after tree */
+    .narrative {
+      margin-top: var(--space-8);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+      font-size: var(--text-xs);
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .narrative__col h3 {
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: var(--space-2);
+      font-size: var(--text-xs);
+      text-transform: lowercase;
+    }
+
+    .narrative__col p {
+      margin: 0;
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: fixed;
+      bottom: var(--space-4);
+      right: var(--space-4);
+      font-size: var(--text-xs);
+      color: var(--border);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .tree-takeover {
+        padding: var(--space-4);
+      }
+
+      .tree {
+        font-size: var(--text-xs);
+      }
+
+      .tree__root {
+        font-size: var(--text-xl);
+      }
+
+      .tree__root-connector {
+        font-size: var(--text-xl);
+      }
+
+      .narrative {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+      }
+
+      .quote-card {
+        width: 240px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="tree-takeover">
+    <div class="tree-main">
+      <nav class="tree">
+        <!-- Back to home - same treatment as metric takeover -->
+        <a href="index.html" class="tree__back">home</a>
+
+        <!-- HORIZONTAL ROOT ROW: mido ─── branches -->
+        <div class="tree__root-row">
+          <span class="tree__root">mido</span>
+          <span class="c"> ─── </span>
+          <div class="tree__level">
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!-- BUILD -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <div class="tree__row">
+              <span class="c c-dark">├─ </span>
+              <a href="portfolio.html" class="label">build</a>
+              <span class="dots"> ············ </span>
+              <span class="desc">what i've made</span>
+              <span class="c"> ─── </span>
+              <div class="children--inline" data-overflow-expanded="false">
+                <span><span class="c">├─ </span><a href="projects/analytics-redesign.html" class="leaf">analytics redesign</a></span>
+                <span><span class="c">├─ </span><a href="projects/multi-store.html" class="leaf">multi-store</a></span>
+                <span><span class="c">├─ </span><a href="projects/the-drop.html" class="leaf">the drop</a></span>
+                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/tshirt-club.html" class="leaf">t-shirt club</a></span>
+                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/pin2-challenge.html" class="leaf">pin2 challenge</a></span>
+                <span class="overflow-hidden"><span class="c">└─ </span><a href="projects/talabat.html" class="leaf">talabat dd</a></span>
+                <span class="overflow-more">+3 more</span>
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!-- THINK -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <div class="tree__row">
+              <span class="c c-dark">├─ </span>
+              <a href="writing.html" class="label">think</a>
+              <span class="dots"> ············ </span>
+              <span class="desc">ideas & frameworks</span>
+              <span class="c"> ─── </span>
+              <div class="children--inline">
+                <span><span class="c">├─ </span><a href="writing/bottlenecks.html" class="leaf">bottlenecks</a></span>
+
+                <!-- BOOKS - expandable to ideas -->
+                <span class="expandable" data-expanded="false">
+                  <span class="c">├─ </span>
+                  <span class="leaf-text">books</span>
+                  <span class="c"> ─── </span>
+                  <div class="expanded children--inline">
+
+                    <!-- Think Like a Rocket Scientist - Varol -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">├─ </span>
+                      <span class="leaf-text">think like a rocket scientist</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">varol</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">first principles</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"The credit for first-principles thinking goes to Aristotle, who defined it as 'the first basis from which a thing is known.'"</div>
+                            <div class="quote-card">"When you apply first-principles thinking, you switch from being a cover band that plays someone else's songs to an artist that does the painstaking work of creating something new."</div>
+                            <div class="quote-card">"Moonshots force you to reason from first principles. If your goal is 1% improvement, you can work within the status quo. But if your goal is to improve tenfold, the status quo has to go."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">uncertainty</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"All progress takes place in uncertain conditions."</div>
+                            <div class="quote-card">"Our ability to make the most out of uncertainty is what creates the most potential value. Where certainty ends, progress begins."</div>
+                            <div class="quote-card">"Uncertainty leads to joy, discovery, and the fulfillment of your full potential."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">moonshots</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Given a ten percent chance of a 100 times payoff, you should take that bet every time."</div>
+                            <div class="quote-card">"There's far less competition for antelopes. Everyone else is busy chasing mice in the same crowded, rapidly shrinking territory."</div>
+                            <div class="quote-card">"We wanted flying cars, instead we got 140 characters."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">failure</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"The goal isn't to fail fast. It's to learn fast. We should be celebrating the lessons from failure—not failure itself."</div>
+                            <div class="quote-card">"Surviving your own success can be more difficult than surviving your own failure."</div>
+                            <div class="quote-card">"If we don't acknowledge we failed—if we avoid a true reckoning—we can't learn anything."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+
+                    <!-- Playing to Win - Martin & Lafley -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">├─ </span>
+                      <span class="leaf-text">playing to win</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">martin & lafley</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">strategy</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Strategy is choice. An integrated set of choices that uniquely positions the firm to create sustainable advantage."</div>
+                            <div class="quote-card">"It is only through making and acting on choices that you can win. Clear, tough choices force your hand but also free you to focus."</div>
+                            <div class="quote-card">"A strategy is a coordinated and integrated set of where-to-play, how-to-win, core capability, and management system choices."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">where to play</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Where to play selects the playing field; how to win defines the choices for winning on that field."</div>
+                            <div class="quote-card">"What is your winning aspiration? Where should you play? How can you win there? What capabilities do you need?"</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">competitive advantage</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Winning means providing a better consumer value equation than competitors, on a sustainable basis."</div>
+                            <div class="quote-card">"To determine how to win, an organization must decide what will enable it to create unique value and sustainably deliver that value."</div>
+                            <div class="quote-card">"Two generic ways: cost leadership and differentiation."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+
+                    <!-- Super Thinking - Weinberg -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">├─ </span>
+                      <span class="leaf-text">super thinking</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">weinberg</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">mental models</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"The central mental model is arguing from first principles—thinking from the bottom up, using basic building blocks."</div>
+                            <div class="quote-card">"Thinking about a problem from an inverse perspective can unlock new solutions. The inverse of being right more is being wrong less."</div>
+                            <div class="quote-card">"To be wrong less, you need to be testing your assumptions in the real world, a process known as de-risking."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">cognitive biases</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"You are more inclined to avoid losses than to want to make similar gains."</div>
+                            <div class="quote-card">"When you allow irrecoverable costs to cloud your decision making, you're falling victim to the sunk-cost fallacy."</div>
+                            <div class="quote-card">"Present bias is the tendency to overvalue near-term rewards over making incremental progress on long-term goals."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">laws & razors</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Parkinson's law: work expands to fill the time available for its completion."</div>
+                            <div class="quote-card">"Hofstadter's law: It always takes longer than you expect, even when you take into account Hofstadter's Law."</div>
+                            <div class="quote-card">"The simplest explanation is most likely to be true. When you hear hoofbeats, think horses, not zebras."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+
+                    <!-- Competitive Strategy - Porter -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">└─ </span>
+                      <span class="leaf-text">competitive strategy</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">porter</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">five forces</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"The state of competition depends on five basic competitive forces. Their collective strength determines ultimate profit potential."</div>
+                            <div class="quote-card">"The goal is to find a position where the company can best defend itself against competitive forces or influence them in its favor."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">positioning</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Strategic positioning means performing different activities from rivals, or performing similar activities in different ways."</div>
+                            <div class="quote-card">"Strategy is the creation of a unique and valuable position, involving a different set of activities."</div>
+                            <div class="quote-card">"The essence of strategy is choosing what not to do."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">trade-offs</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Strategy is making trade-offs in competing."</div>
+                            <div class="quote-card">"Differentiation provides insulation against rivalry because of brand loyalty and lower price sensitivity."</div>
+                            <div class="quote-card">"A firm stuck in the middle—without cost leadership or differentiation—is almost guaranteed low profitability."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+                  </div>
+                </span>
+
+                <!-- DECOMPOSE - hidden treasure under think -->
+                <span class="hidden-branch decompose-branch" data-revealed="false">
+                  <span class="c">└─ </span>
+                  <span class="expandable decompose-trigger" data-expanded="false">
+                    <span class="leaf-text">decompose</span>
+                    <span class="dots"> ········ </span>
+                    <span class="desc">metric driver trees</span>
+                    <span class="c"> ─── </span>
+                    <div class="expanded children--inline">
+                      <span>
+                        <span class="c">├─ </span>
+                        <span class="metric-link leaf-text" data-metric="revenue">revenue</span>
+                      </span>
+                      <span>
+                        <span class="c">├─ </span>
+                        <span class="metric-link leaf-text" data-metric="ltv">ltv</span>
+                      </span>
+                      <span>
+                        <span class="c">└─ </span>
+                        <span class="metric-link leaf-text" data-metric="thepoint">the point</span>
+                      </span>
+                    </div>
+                  </span>
+                </span>
+
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!-- PATH -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <div class="tree__row">
+              <span class="c c-dark">└─ </span>
+              <a href="history.html" class="label">path</a>
+              <span class="dots"> ············ </span>
+              <span class="desc">how i got here</span>
+              <span class="c"> ─── </span>
+              <div class="children--inline">
+                <span><span class="c">├─ </span><a href="history.html#shopify" class="leaf">shopify · 2022–</a></span>
+                <span><span class="c">├─ </span><a href="history.html#amazon" class="leaf">amazon · 2017–22</a></span>
+                <span><span class="c">├─ </span><a href="history.html#rotman" class="leaf">rotman · 2015–17</a></span>
+                <span><span class="c">├─ </span><a href="history.html#pwc" class="leaf">pwc · 2009–15</a></span>
+                <span><span class="c">└─ </span><a href="history.html#uoft" class="leaf">u of t · 2004–08</a></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Narrative footer columns -->
+    <footer class="narrative">
+      <div class="narrative__col">
+        <h3>why a tree?</h3>
+        <p>everything can be decomposed. a career is a sequence of roles. a project is a set of decisions. an idea is a collection of influences. the tree makes the structure visible.</p>
+      </div>
+      <div class="narrative__col">
+        <h3>decomposition</h3>
+        <p>the most useful skill i've learned: break anything into its component parts. revenue = traffic × conversion × aov. keep splitting until you find a lever you can actually pull.</p>
+      </div>
+      <div class="narrative__col">
+        <h3>the root</h3>
+        <p>every branch traces back to the same place. build, think, path—all connected. the tree is just a way of seeing what was always there.</p>
+      </div>
+    </footer>
+
+    <div class="scroll-hint">← scroll to explore →</div>
+  </div>
+
+  <!-- Metric Takeover Overlays - Simple left-to-right trees -->
+  <div id="metric-takeover-revenue" class="metric-takeover">
+    <span class="metric-takeover__back" onclick="closeMetricTakeover()">back to tree</span>
+    <div class="metric-takeover__tree">
+      <div class="driver">
+        <span class="driver__node">revenue</span>
+        <span class="c"> ─── </span>
+        <div class="driver__children">
+          <div class="driver__child">
+            <span class="c">├─ </span>
+            <span class="driver__node">traffic</span>
+            <span class="c"> ─── </span>
+            <div class="driver__children">
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">organic</span></span>
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">paid</span></span>
+              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">owned</span></span>
+            </div>
+          </div>
+          <div class="driver__child">
+            <span class="c">├─ </span>
+            <span class="driver__node">conversion</span>
+            <span class="c"> ─── </span>
+            <div class="driver__children" data-expanded="false">
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">land</span></span>
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">pdp view</span></span>
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">add to cart</span></span>
+              <span class="driver__child driver__hidden"><span class="c">├─ </span><span class="driver__leaf">checkout start</span></span>
+              <span class="driver__child driver__hidden"><span class="c">└─ </span><span class="driver__leaf">purchase</span></span>
+              <span class="driver__child driver__more">+2 more</span>
+            </div>
+          </div>
+          <div class="driver__child">
+            <span class="c">└─ </span>
+            <span class="driver__node">aov</span>
+            <span class="c"> ─── </span>
+            <div class="driver__children">
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">units per order</span></span>
+              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">price per unit</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="metric-takeover-ltv" class="metric-takeover">
+    <span class="metric-takeover__back" onclick="closeMetricTakeover()">back to tree</span>
+    <div class="metric-takeover__tree">
+      <div class="driver">
+        <span class="driver__node">ltv</span>
+        <span class="c"> ─── </span>
+        <div class="driver__children">
+          <div class="driver__child">
+            <span class="c">├─ </span>
+            <span class="driver__node">aov</span>
+            <span class="c"> ─── </span>
+            <div class="driver__children">
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">units per order</span></span>
+              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">price per unit</span></span>
+            </div>
+          </div>
+          <div class="driver__child">
+            <span class="c">├─ </span>
+            <span class="driver__node">purchase frequency</span>
+            <span class="c"> ─── </span>
+            <div class="driver__children">
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">product quality</span></span>
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">category dynamics</span></span>
+              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">retention marketing</span></span>
+            </div>
+          </div>
+          <div class="driver__child">
+            <span class="c">└─ </span>
+            <span class="driver__node">lifespan</span>
+            <span class="c"> ─── </span>
+            <div class="driver__children">
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">churn</span></span>
+              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">reactivation</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="metric-takeover-thepoint" class="metric-takeover">
+    <span class="metric-takeover__back" onclick="closeMetricTakeover()">back to tree</span>
+    <div class="metric-takeover__tree">
+      <div class="driver">
+        <span class="driver__node">the point</span>
+        <span class="c"> ─── </span>
+        <div class="driver__children">
+          <div class="driver__child">
+            <span class="c">├─ </span>
+            <span class="driver__node">every metric decomposes</span>
+            <span class="c"> ─── </span>
+            <div class="driver__children">
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">into component drivers</span></span>
+              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">which decompose further</span></span>
+            </div>
+          </div>
+          <div class="driver__child">
+            <span class="c">├─ </span>
+            <span class="driver__node">keep decomposing</span>
+            <span class="c"> ─── </span>
+            <div class="driver__children">
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">until you find a lever</span></span>
+              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">you can actually pull</span></span>
+            </div>
+          </div>
+          <div class="driver__child">
+            <span class="c">└─ </span>
+            <span class="driver__node">most stop too early</span>
+            <span class="c"> ─── </span>
+            <div class="driver__children">
+              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">"we need more traffic"</span></span>
+              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">"increase conversion"</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle expandable items
+    document.querySelectorAll('.expandable').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = item.dataset.expanded === 'true';
+        item.dataset.expanded = isExpanded ? 'false' : 'true';
+
+        // Reveal hidden branches when expanded
+        if (item.closest('.hidden-branch')) {
+          item.closest('.hidden-branch').dataset.revealed = 'true';
+        }
+      });
+    });
+
+    // Toggle idea tags and make quote cards span full viewport
+    document.querySelectorAll('.idea-tag').forEach(tag => {
+      tag.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        const quoteCards = tag.nextElementSibling;
+        if (!quoteCards || !quoteCards.classList.contains('quote-cards')) return;
+
+        const isActive = tag.dataset.expanded === 'true';
+
+        // Close all other idea tags and reset their card styles
+        document.querySelectorAll('.idea-tag').forEach(t => {
+          if (t !== tag) {
+            t.dataset.expanded = 'false';
+            const cards = t.nextElementSibling;
+            if (cards && cards.classList.contains('quote-cards')) {
+              cards.style.marginLeft = '';
+              cards.style.width = '';
+              cards.style.paddingLeft = '';
+            }
+          }
+        });
+
+        if (isActive) {
+          // Closing - reset styles
+          tag.dataset.expanded = 'false';
+          quoteCards.style.marginLeft = '';
+          quoteCards.style.width = '';
+          quoteCards.style.paddingLeft = '';
+        } else {
+          // Opening - calculate offset and apply full-viewport styles
+          tag.dataset.expanded = 'true';
+
+          // Wait for display:flex to apply, then calculate
+          requestAnimationFrame(() => {
+            const rect = quoteCards.getBoundingClientRect();
+            const leftOffset = rect.left;
+
+            // Pull to left edge, span full viewport, pad to original position
+            quoteCards.style.marginLeft = `-${leftOffset}px`;
+            quoteCards.style.width = '100vw';
+            quoteCards.style.paddingLeft = `${leftOffset}px`;
+          });
+        }
+      });
+    });
+
+    // Metric links - open takeover
+    document.querySelectorAll('.metric-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const metric = link.dataset.metric;
+        const takeover = document.getElementById('metric-takeover-' + metric);
+        if (takeover) {
+          takeover.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    // "+N more" expand handler (driver trees)
+    document.querySelectorAll('.driver__more').forEach(more => {
+      more.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const parent = more.closest('.driver__children');
+        if (parent) {
+          parent.dataset.expanded = 'true';
+        }
+      });
+    });
+
+    // "+N more" expand handler (main tree overflow)
+    document.querySelectorAll('.overflow-more').forEach(more => {
+      more.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const parent = more.parentElement;
+        if (parent) {
+          parent.dataset.overflowExpanded = 'true';
+        }
+      });
+    });
+
+    // Close metric takeover
+    function closeMetricTakeover() {
+      document.querySelectorAll('.metric-takeover').forEach(t => {
+        t.classList.remove('active');
+      });
+      document.body.style.overflow = '';
+    }
+
+    // Close takeover and quote cards with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMetricTakeover();
+        // Also close quote cards
+        document.querySelectorAll('.idea-tag').forEach(t => {
+          t.dataset.expanded = 'false';
+          const cards = t.nextElementSibling;
+          if (cards && cards.classList.contains('quote-cards')) {
+            cards.style.marginLeft = '';
+            cards.style.width = '';
+            cards.style.paddingLeft = '';
+          }
+        });
+      }
+    });
+
+    // Click outside to close decompose branch
+    document.addEventListener('click', (e) => {
+      const decomposeBranch = document.querySelector('.decompose-branch');
+      const decomposeTrigger = document.querySelector('.decompose-trigger');
+
+      // If click is outside the decompose branch, hide it
+      if (decomposeBranch && decomposeTrigger &&
+          !decomposeBranch.contains(e.target) &&
+          decomposeBranch.dataset.revealed === 'true') {
+        decomposeBranch.dataset.revealed = 'false';
+        decomposeTrigger.dataset.expanded = 'false';
+      }
+    });
+
+    // Reveal decompose branch on click
+    const decomposeBranch = document.querySelector('.decompose-branch');
+    if (decomposeBranch) {
+      decomposeBranch.addEventListener('click', (e) => {
+        e.stopPropagation();
+        decomposeBranch.dataset.revealed = 'true';
+      });
+    }
+  </script>
+</body>
+</html>
