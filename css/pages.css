@@ -377,6 +377,17 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .tree-home {
+    padding: var(--space-8);
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .tree-home__about {
+    font-size: var(--text-xs);
+  }
+
   .timeline {
     padding-left: var(--space-4);
   }
