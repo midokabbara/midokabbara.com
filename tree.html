@@ -508,6 +508,26 @@
       pointer-events: none;
     }
 
+    /* Project highlight when idea tag is active */
+    .leaf.project-highlight {
+      background: linear-gradient(120deg, rgba(196, 90, 44, 0.15) 0%, rgba(196, 90, 44, 0.15) 100%);
+      background-size: 100% 100%;
+      padding: 0 0.25em;
+      margin: 0 -0.25em;
+      border-radius: 2px;
+      color: var(--text);
+      transition: background 200ms ease, color 200ms ease;
+    }
+
+    /* Note explaining why tag relates to project */
+    .project-note {
+      font-style: italic;
+      color: var(--accent);
+      font-size: 0.85em;
+      margin-left: 0.5em;
+      opacity: 0.8;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .tree-takeover {
@@ -678,13 +698,13 @@
               <span class="desc">what i've made</span>
               <span class="c"> ─── </span>
               <div class="children--inline" data-overflow-expanded="false">
-                <span><span class="c">├─ </span><a href="projects/analytics-redesign.html" class="leaf">analytics redesign</a></span>
-                <span><span class="c">├─ </span><a href="projects/multi-store.html" class="leaf">multi-store</a></span>
-                <span><span class="c">├─ </span><a href="projects/the-drop.html" class="leaf">the drop</a></span>
-                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/pod-subscription.html" class="leaf">pod subscription</a></span>
-                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/pin2-challenge.html" class="leaf">pin2 challenge</a></span>
-                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/alghanim-valuation.html" class="leaf">alghanim valuation</a></span>
-                <span class="overflow-hidden"><span class="c">└─ </span><a href="projects/airline-turnaround.html" class="leaf">airline turnaround</a></span>
+                <span><span class="c">├─ </span><a href="projects/analytics-redesign.html" class="leaf" data-project="analytics-redesign">analytics redesign</a></span>
+                <span><span class="c">├─ </span><a href="projects/multi-store.html" class="leaf" data-project="multi-store">multi-store</a></span>
+                <span><span class="c">├─ </span><a href="projects/the-drop.html" class="leaf" data-project="the-drop">the drop</a></span>
+                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/pod-subscription.html" class="leaf" data-project="pod-subscription">pod subscription</a></span>
+                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/pin2-challenge.html" class="leaf" data-project="pin2-challenge">pin2 challenge</a></span>
+                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/alghanim-valuation.html" class="leaf" data-project="alghanim-valuation">alghanim valuation</a></span>
+                <span class="overflow-hidden"><span class="c">└─ </span><a href="projects/airline-turnaround.html" class="leaf" data-project="airline-turnaround">airline turnaround</a></span>
                 <span class="overflow-more">+4 more</span>
               </div>
             </div>
@@ -718,7 +738,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">first principles</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "decomposing metrics from scratch", "pin2-challenge": "reasoning from basics"}'>first principles</span>
                           <div class="quote-cards">
                             <div class="quote-card">"The credit for first-principles thinking goes to Aristotle, who defined it as 'the first basis from which a thing is known.'"</div>
                             <div class="quote-card">"When you apply first-principles thinking, you switch from being a cover band that plays someone else's songs to an artist that does the painstaking work of creating something new."</div>
@@ -728,7 +748,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">uncertainty</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"the-drop": "betting on unknowns"}'>uncertainty</span>
                           <div class="quote-cards">
                             <div class="quote-card">"All progress takes place in uncertain conditions."</div>
                             <div class="quote-card">"Our ability to make the most out of uncertainty is what creates the most potential value. Where certainty ends, progress begins."</div>
@@ -738,7 +758,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">moonshots</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"the-drop": "high-risk, high-reward drops"}'>moonshots</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Given a ten percent chance of a 100 times payoff, you should take that bet every time."</div>
                             <div class="quote-card">"There's far less competition for antelopes. Everyone else is busy chasing mice in the same crowded, rapidly shrinking territory."</div>
@@ -748,7 +768,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">failure</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"pin2-challenge": "learning from missed attempts", "airline-turnaround": "diagnosing what went wrong"}'>failure</span>
                           <div class="quote-cards">
                             <div class="quote-card">"The goal isn't to fail fast. It's to learn fast. We should be celebrating the lessons from failure—not failure itself."</div>
                             <div class="quote-card">"Surviving your own success can be more difficult than surviving your own failure."</div>
@@ -769,7 +789,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">strategy</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "market expansion choices", "alghanim-valuation": "strategic positioning analysis", "airline-turnaround": "turnaround strategy"}'>strategy</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Strategy is choice. An integrated set of choices that uniquely positions the firm to create sustainable advantage."</div>
                             <div class="quote-card">"It is only through making and acting on choices that you can win. Clear, tough choices force your hand but also free you to focus."</div>
@@ -779,7 +799,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">where to play</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "choosing new markets", "airline-turnaround": "route optimization"}'>where to play</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Where to play selects the playing field; how to win defines the choices for winning on that field."</div>
                             <div class="quote-card">"What is your winning aspiration? Where should you play? How can you win there? What capabilities do you need?"</div>
@@ -788,7 +808,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">competitive advantage</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "local market moats", "alghanim-valuation": "sustainable advantages", "airline-turnaround": "differentiation levers"}'>competitive advantage</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Winning means providing a better consumer value equation than competitors, on a sustainable basis."</div>
                             <div class="quote-card">"To determine how to win, an organization must decide what will enable it to create unique value and sustainably deliver that value."</div>
@@ -809,7 +829,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">mental models</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "frameworks for metrics", "pin2-challenge": "structured thinking"}'>mental models</span>
                           <div class="quote-cards">
                             <div class="quote-card">"The central mental model is arguing from first principles—thinking from the bottom up, using basic building blocks."</div>
                             <div class="quote-card">"Thinking about a problem from an inverse perspective can unlock new solutions. The inverse of being right more is being wrong less."</div>
@@ -819,7 +839,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">cognitive biases</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"pin2-challenge": "avoiding blind spots", "analytics-redesign": "user behavior insights"}'>cognitive biases</span>
                           <div class="quote-cards">
                             <div class="quote-card">"You are more inclined to avoid losses than to want to make similar gains."</div>
                             <div class="quote-card">"When you allow irrecoverable costs to cloud your decision making, you're falling victim to the sunk-cost fallacy."</div>
@@ -829,7 +849,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">laws & razors</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "simplicity in design"}'>laws & razors</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Parkinson's law: work expands to fill the time available for its completion."</div>
                             <div class="quote-card">"Hofstadter's law: It always takes longer than you expect, even when you take into account Hofstadter's Law."</div>
@@ -850,7 +870,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">five forces</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"alghanim-valuation": "industry structure analysis", "airline-turnaround": "competitive dynamics"}'>five forces</span>
                           <div class="quote-cards">
                             <div class="quote-card">"The state of competition depends on five basic competitive forces. Their collective strength determines ultimate profit potential."</div>
                             <div class="quote-card">"The goal is to find a position where the company can best defend itself against competitive forces or influence them in its favor."</div>
@@ -859,7 +879,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">positioning</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "market differentiation", "alghanim-valuation": "strategic fit", "airline-turnaround": "repositioning the brand"}'>positioning</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Strategic positioning means performing different activities from rivals, or performing similar activities in different ways."</div>
                             <div class="quote-card">"Strategy is the creation of a unique and valuable position, involving a different set of activities."</div>
@@ -869,7 +889,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">trade-offs</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "scale vs. localization", "airline-turnaround": "cost vs. service"}'>trade-offs</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Strategy is making trade-offs in competing."</div>
                             <div class="quote-card">"Differentiation provides insulation against rivalry because of brand loyalty and lower price sensitivity."</div>
@@ -890,7 +910,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">value creation</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"alghanim-valuation": "DCF fundamentals", "pod-subscription": "subscriber economics"}'>value creation</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Companies create value by investing capital to generate future cash flows at rates of return exceeding their cost of capital."</div>
                             <div class="quote-card">"Value creation is driven by growth and ROIC. A company that earns a 20 percent return and grows at 10 percent creates more value than one that earns 10 percent and grows at 20 percent."</div>
@@ -899,7 +919,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">roic</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"alghanim-valuation": "return analysis"}'>roic</span>
                           <div class="quote-cards">
                             <div class="quote-card">"ROIC is the single most important metric for understanding long-term value creation."</div>
                             <div class="quote-card">"High returns attract competition. Sustainable competitive advantage is the only way to maintain high ROIC."</div>
@@ -919,7 +939,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">feedback loops</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "data-driven iteration", "pod-subscription": "retention cycles"}'>feedback loops</span>
                           <div class="quote-cards">
                             <div class="quote-card">"A feedback loop is a closed chain of causal connections from a stock, through a set of decisions and actions dependent on the level of the stock, and back again."</div>
                             <div class="quote-card">"Reinforcing feedback loops are sources of growth, explosion, erosion, and collapse. A balancing loop is a stabilizing structure."</div>
@@ -928,7 +948,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">leverage points</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "high-impact metrics", "pod-subscription": "churn reduction levers"}'>leverage points</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Leverage points are places within a complex system where a small shift in one thing can produce big changes in everything."</div>
                             <div class="quote-card">"The higher the leverage point, the more the system will resist changing it."</div>
@@ -948,7 +968,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">stoicism</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{}'>stoicism</span>
                           <div class="quote-cards">
                             <div class="quote-card">"You have power over your mind, not outside events. Realize this, and you will find strength."</div>
                             <div class="quote-card">"The happiness of your life depends upon the quality of your thoughts."</div>
@@ -958,7 +978,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">impermanence</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{}'>impermanence</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Never let the future disturb you. You will meet it, if you have to, with the same weapons of reason which today arm you against the present."</div>
                             <div class="quote-card">"Time is a sort of river of passing events, and strong is its current."</div>
@@ -978,7 +998,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">teleology</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{}'>teleology</span>
                           <div class="quote-cards">
                             <div class="quote-card">"We are not determined by our experiences, but by the meaning we give them."</div>
                             <div class="quote-card">"The past does not exist. It is something that we create in the present."</div>
@@ -987,7 +1007,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">separation of tasks</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{}'>separation of tasks</span>
                           <div class="quote-cards">
                             <div class="quote-card">"All problems are interpersonal relationship problems."</div>
                             <div class="quote-card">"The separation of tasks: whose task is this? Identify who ultimately will receive the consequence of the choice."</div>
@@ -1007,7 +1027,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">fermi estimation</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"alghanim-valuation": "market sizing"}'>fermi estimation</span>
                           <div class="quote-cards">
                             <div class="quote-card">"If a thing can be observed in any way at all, it lends itself to some type of measurement method."</div>
                             <div class="quote-card">"Your problem is not as unique as you think. Someone has measured something like it before."</div>
@@ -1016,7 +1036,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">uncertainty</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"alghanim-valuation": "scenario modeling"}'>uncertainty</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Measurement is the reduction of uncertainty, not the elimination of it."</div>
                             <div class="quote-card">"The things that matter most are often the things we know least about."</div>
@@ -1036,7 +1056,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">disruption</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"the-drop": "new market creation"}'>disruption</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Disruptive technologies typically enable new markets to emerge."</div>
                             <div class="quote-card">"Good management was the most powerful reason why leading firms failed to stay atop their industries."</div>
@@ -1045,7 +1065,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">incumbents</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "competing with established players", "airline-turnaround": "legacy challenges"}'>incumbents</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Incumbents typically win sustaining battles. Entrants typically win disruptive ones."</div>
                             <div class="quote-card">"Companies stumble for many reasons, but the most common is that the very management practices that allow them to lead become their undoing."</div>
@@ -1065,7 +1085,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">decision making</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "data-informed choices", "pin2-challenge": "judgment under constraints"}'>decision making</span>
                           <div class="quote-cards">
                             <div class="quote-card">"A mental model is a representation of how something works. We use models to understand the world."</div>
                             <div class="quote-card">"The quality of your thinking depends on the mental models in your head."</div>
@@ -1074,7 +1094,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">latticework</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "connecting metrics"}'>latticework</span>
                           <div class="quote-cards">
                             <div class="quote-card">"You need a latticework of mental models in your head, and you need to hang your experience on this latticework."</div>
                             <div class="quote-card">"The person who has the best collection of models typically wins."</div>
@@ -1094,7 +1114,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false">practical analysis</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"alghanim-valuation": "model building"}'>practical analysis</span>
                           <div class="quote-cards">
                             <div class="quote-card">"A model is only as good as its assumptions. Garbage in, garbage out."</div>
                             <div class="quote-card">"The goal is not precision but insight. A rough model that captures the key drivers beats a precise model that misses them."</div>
@@ -1103,7 +1123,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false">sensitivity</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"alghanim-valuation": "key driver testing"}'>sensitivity</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Always test your key assumptions. What happens if growth is 5% instead of 10%?"</div>
                             <div class="quote-card">"The best analysts know which variables matter most and focus their energy there."</div>
@@ -1464,6 +1484,41 @@
       });
     });
 
+    // Helper function to highlight projects based on idea tag
+    function highlightProjects(projectNotes) {
+      // Clear all existing highlights and notes first
+      document.querySelectorAll('.leaf.project-highlight').forEach(el => {
+        el.classList.remove('project-highlight');
+      });
+      document.querySelectorAll('.project-note').forEach(el => {
+        el.remove();
+      });
+
+      // Add highlights and notes to matching projects
+      if (projectNotes && Object.keys(projectNotes).length > 0) {
+        Object.entries(projectNotes).forEach(([slug, note]) => {
+          const projectLink = document.querySelector(`.leaf[data-project="${slug}"]`);
+          if (projectLink) {
+            projectLink.classList.add('project-highlight');
+
+            // Add note if provided
+            if (note) {
+              const noteEl = document.createElement('span');
+              noteEl.className = 'project-note';
+              noteEl.textContent = `— ${note}`;
+              projectLink.parentNode.insertBefore(noteEl, projectLink.nextSibling);
+            }
+
+            // Also expand the overflow to show highlighted projects
+            const overflowParent = projectLink.closest('[data-overflow-expanded]');
+            if (overflowParent && projectLink.closest('.overflow-hidden')) {
+              overflowParent.dataset.overflowExpanded = 'true';
+            }
+          }
+        });
+      }
+    }
+
     // Toggle idea tags and make quote cards span full viewport
     document.querySelectorAll('.idea-tag').forEach(tag => {
       tag.addEventListener('click', (e) => {
@@ -1488,14 +1543,26 @@
         });
 
         if (isActive) {
-          // Closing - reset styles
+          // Closing - reset styles and clear highlights
           tag.dataset.expanded = 'false';
           quoteCards.style.marginLeft = '';
           quoteCards.style.width = '';
           quoteCards.style.paddingLeft = '';
+          highlightProjects({});
         } else {
           // Opening - calculate offset and apply full-viewport styles
           tag.dataset.expanded = 'true';
+
+          // Highlight related projects with notes
+          const projectNotesAttr = tag.dataset.projectNotes;
+          if (projectNotesAttr) {
+            try {
+              const projectNotes = JSON.parse(projectNotesAttr);
+              highlightProjects(projectNotes);
+            } catch (e) {
+              console.error('Invalid project-notes JSON:', e);
+            }
+          }
 
           // Wait for display:flex to apply, then calculate
           requestAnimationFrame(() => {
@@ -1558,7 +1625,7 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeMetricTakeover();
-        // Also close quote cards
+        // Also close quote cards and clear highlights
         document.querySelectorAll('.idea-tag').forEach(t => {
           t.dataset.expanded = 'false';
           const cards = t.nextElementSibling;
@@ -1568,10 +1635,11 @@
             cards.style.paddingLeft = '';
           }
         });
+        highlightProjects({});
       }
     });
 
-    // Click outside to close decompose branch
+    // Click outside to close decompose branch and clear highlights
     document.addEventListener('click', (e) => {
       const decomposeBranch = document.querySelector('.decompose-branch');
       const decomposeTrigger = document.querySelector('.decompose-trigger');
@@ -1582,6 +1650,23 @@
           decomposeBranch.dataset.revealed === 'true') {
         decomposeBranch.dataset.revealed = 'false';
         decomposeTrigger.dataset.expanded = 'false';
+      }
+
+      // If click is outside any idea-tag or quote-cards, clear highlights
+      const clickedIdeaTag = e.target.closest('.idea-tag');
+      const clickedQuoteCards = e.target.closest('.quote-cards');
+      if (!clickedIdeaTag && !clickedQuoteCards) {
+        // Close all idea tags and clear highlights
+        document.querySelectorAll('.idea-tag[data-expanded="true"]').forEach(t => {
+          t.dataset.expanded = 'false';
+          const cards = t.nextElementSibling;
+          if (cards && cards.classList.contains('quote-cards')) {
+            cards.style.marginLeft = '';
+            cards.style.width = '';
+            cards.style.paddingLeft = '';
+          }
+        });
+        highlightProjects({});
       }
     });
 
