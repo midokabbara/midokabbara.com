@@ -287,6 +287,20 @@
       color: var(--text);
     }
 
+    .treasure-msg {
+      display: none;
+      font-size: 10px;
+      color: var(--accent);
+      margin-left: var(--space-2);
+      opacity: 0;
+      transition: opacity 400ms ease 200ms;
+    }
+
+    .hidden-branch[data-revealed="true"] .treasure-msg {
+      display: inline;
+      opacity: 1;
+    }
+
     /* Metric decomposition styling */
     .metric {
       font-size: var(--text-xs);
@@ -421,7 +435,7 @@
       padding-top: var(--space-6);
       border-top: 1px solid var(--border);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: var(--space-8);
       font-size: var(--text-xs);
       line-height: 1.7;
@@ -600,7 +614,7 @@
                 <!-- BOOKS - expandable to ideas -->
                 <span class="expandable" data-expanded="false">
                   <span class="c">├─ </span>
-                  <span class="leaf-text">books</span>
+                  <span class="leaf-text">sample of books ive read</span>
                   <span class="c"> ─── </span>
                   <div class="expanded children--inline">
 
@@ -738,7 +752,7 @@
 
                     <!-- Competitive Strategy - Porter -->
                     <span class="expandable" data-expanded="false">
-                      <span class="c">└─ </span>
+                      <span class="c">├─ </span>
                       <span class="leaf-text">competitive strategy</span>
                       <span class="dots"> ··· </span>
                       <span class="desc">porter</span>
@@ -775,6 +789,239 @@
 
                       </div>
                     </span>
+
+                    <!-- Valuation - McKinsey -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">├─ </span>
+                      <span class="leaf-text">valuation</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">mckinsey</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">value creation</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Companies create value by investing capital to generate future cash flows at rates of return exceeding their cost of capital."</div>
+                            <div class="quote-card">"Value creation is driven by growth and ROIC. A company that earns a 20 percent return and grows at 10 percent creates more value than one that earns 10 percent and grows at 20 percent."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">roic</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"ROIC is the single most important metric for understanding long-term value creation."</div>
+                            <div class="quote-card">"High returns attract competition. Sustainable competitive advantage is the only way to maintain high ROIC."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+
+                    <!-- Thinking in Systems - Meadows -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">├─ </span>
+                      <span class="leaf-text">thinking in systems</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">meadows</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">feedback loops</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"A feedback loop is a closed chain of causal connections from a stock, through a set of decisions and actions dependent on the level of the stock, and back again."</div>
+                            <div class="quote-card">"Reinforcing feedback loops are sources of growth, explosion, erosion, and collapse. A balancing loop is a stabilizing structure."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">leverage points</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Leverage points are places within a complex system where a small shift in one thing can produce big changes in everything."</div>
+                            <div class="quote-card">"The higher the leverage point, the more the system will resist changing it."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+
+                    <!-- Meditations - Marcus Aurelius -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">├─ </span>
+                      <span class="leaf-text">meditations</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">marcus aurelius</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">stoicism</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"You have power over your mind, not outside events. Realize this, and you will find strength."</div>
+                            <div class="quote-card">"The happiness of your life depends upon the quality of your thoughts."</div>
+                            <div class="quote-card">"Waste no more time arguing about what a good man should be. Be one."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">impermanence</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Never let the future disturb you. You will meet it, if you have to, with the same weapons of reason which today arm you against the present."</div>
+                            <div class="quote-card">"Time is a sort of river of passing events, and strong is its current."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+
+                    <!-- The Courage to Be Disliked -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">├─ </span>
+                      <span class="leaf-text">the courage to be disliked</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">kishimi & koga</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">teleology</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"We are not determined by our experiences, but by the meaning we give them."</div>
+                            <div class="quote-card">"The past does not exist. It is something that we create in the present."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">separation of tasks</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"All problems are interpersonal relationship problems."</div>
+                            <div class="quote-card">"The separation of tasks: whose task is this? Identify who ultimately will receive the consequence of the choice."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+
+                    <!-- How to Measure Anything - Hubbard -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">├─ </span>
+                      <span class="leaf-text">how to measure anything</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">hubbard</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">fermi estimation</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"If a thing can be observed in any way at all, it lends itself to some type of measurement method."</div>
+                            <div class="quote-card">"Your problem is not as unique as you think. Someone has measured something like it before."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">uncertainty</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Measurement is the reduction of uncertainty, not the elimination of it."</div>
+                            <div class="quote-card">"The things that matter most are often the things we know least about."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+
+                    <!-- The Innovator's Dilemma - Christensen -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">├─ </span>
+                      <span class="leaf-text">the innovator's dilemma</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">christensen</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">disruption</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Disruptive technologies typically enable new markets to emerge."</div>
+                            <div class="quote-card">"Good management was the most powerful reason why leading firms failed to stay atop their industries."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">incumbents</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Incumbents typically win sustaining battles. Entrants typically win disruptive ones."</div>
+                            <div class="quote-card">"Companies stumble for many reasons, but the most common is that the very management practices that allow them to lead become their undoing."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+
+                    <!-- Mental Models - Hollins -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">├─ </span>
+                      <span class="leaf-text">mental models</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">hollins</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">decision making</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"A mental model is a representation of how something works. We use models to understand the world."</div>
+                            <div class="quote-card">"The quality of your thinking depends on the mental models in your head."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">latticework</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"You need a latticework of mental models in your head, and you need to hang your experience on this latticework."</div>
+                            <div class="quote-card">"The person who has the best collection of models typically wins."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
+
+                    <!-- Financial Modeling -->
+                    <span class="expandable" data-expanded="false">
+                      <span class="c">└─ </span>
+                      <span class="leaf-text">financial modeling</span>
+                      <span class="dots"> ··· </span>
+                      <span class="desc">pignataro</span>
+                      <div class="expanded children--inline" style="margin-left: 3ch;">
+
+                        <span>
+                          <span class="c">├─ </span>
+                          <span class="idea-tag" data-expanded="false">practical analysis</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"A model is only as good as its assumptions. Garbage in, garbage out."</div>
+                            <div class="quote-card">"The goal is not precision but insight. A rough model that captures the key drivers beats a precise model that misses them."</div>
+                          </div>
+                        </span>
+
+                        <span>
+                          <span class="c">└─ </span>
+                          <span class="idea-tag" data-expanded="false">sensitivity</span>
+                          <div class="quote-cards">
+                            <div class="quote-card">"Always test your key assumptions. What happens if growth is 5% instead of 10%?"</div>
+                            <div class="quote-card">"The best analysts know which variables matter most and focus their energy there."</div>
+                          </div>
+                        </span>
+
+                      </div>
+                    </span>
                   </div>
                 </span>
 
@@ -785,6 +1032,7 @@
                     <span class="leaf-text">decompose</span>
                     <span class="dots"> ········ </span>
                     <span class="desc">metric driver trees</span>
+                    <span class="treasure-msg">you found it</span>
                     <span class="c"> ─── </span>
                     <div class="expanded children--inline">
                       <span>
@@ -837,11 +1085,7 @@
       </div>
       <div class="narrative__col">
         <h3>decomposition</h3>
-        <p>the most useful skill i've learned: break anything into its component parts. revenue = traffic × conversion × aov. keep splitting until you find a lever you can actually pull.</p>
-      </div>
-      <div class="narrative__col">
-        <h3>the root</h3>
-        <p>every branch traces back to the same place. build, think, path—all connected. the tree is just a way of seeing what was always there.</p>
+        <p>consulting is about problem decomposition. deals work is about valuation and roic drivers. at amazon, that thinking was applied to inputs and outputs, how they interact to form a flywheel. at shopify, merchant-facing analytics is about helping merchants understand the drivers of their business, decomposing things like revenue = traffic x conversion x aov. same mental model, different domains.</p>
       </div>
     </footer>
 
