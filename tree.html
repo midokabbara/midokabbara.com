@@ -134,6 +134,7 @@
       color: var(--text-muted);
       text-decoration: none;
       transition: color var(--transition-fast);
+      touch-action: manipulation;
     }
 
     .leaf:hover {
@@ -142,6 +143,7 @@
 
     .leaf-text {
       color: var(--text-muted);
+      touch-action: manipulation;
     }
 
     /* Nested children - indented and inline */
@@ -166,6 +168,7 @@
       color: var(--text-muted);
       cursor: pointer;
       font-size: var(--text-xs);
+      touch-action: manipulation;
     }
 
     .overflow-more:hover {
@@ -183,6 +186,7 @@
     /* Expandable */
     .expandable {
       cursor: pointer;
+      touch-action: manipulation;
     }
 
     .expandable:hover > .leaf-text,
@@ -209,6 +213,7 @@
       font-weight: 500;
       color: var(--text);
       cursor: pointer;
+      touch-action: manipulation;
     }
 
     .idea-tag:hover {
