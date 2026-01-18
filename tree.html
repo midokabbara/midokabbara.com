@@ -79,6 +79,7 @@
       color: var(--text);
       text-decoration: none;
       flex-shrink: 0;
+      margin-right: var(--space-2);
     }
 
     /* Branch containers */
@@ -122,6 +123,11 @@
 
     .desc {
       color: var(--text-muted);
+    }
+
+    /* Add spacing before connector that follows description */
+    .desc + .c {
+      margin-left: var(--space-2);
     }
 
     .dots {
@@ -376,6 +382,13 @@
     .driver__node {
       font-weight: 500;
       flex-shrink: 0;
+      margin-left: var(--space-1);
+      margin-right: var(--space-2);
+    }
+
+    /* Root driver node - no left margin */
+    .driver > .driver__node {
+      margin-left: 0;
     }
 
     .driver__children {
@@ -385,11 +398,26 @@
 
     /* Top-level branches get spacing between them */
     .driver > .driver__children > .driver__child {
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
     }
 
     .driver > .driver__children > .driver__child:last-child {
       margin-bottom: 0;
+    }
+
+    /* Second-level branches - small spacing */
+    .driver > .driver__children > .driver__child .driver__children > .driver__child {
+      margin-bottom: var(--space-2);
+    }
+
+    .driver > .driver__children > .driver__child .driver__children > .driver__child:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Deepest level (leaf nodes) - minimal spacing */
+    .driver__children .driver__children .driver__children > .driver__child {
+      margin-bottom: 0;
+      line-height: 1.4;
     }
 
     .driver__child {
@@ -397,8 +425,14 @@
       align-items: flex-start;
     }
 
+    /* Depth-based opacity - deepest level is slightly muted */
+    .driver > .driver__children > .driver__child .driver__children .driver__children .driver__leaf {
+      opacity: 0.8;
+    }
+
     .driver__leaf {
       color: var(--text-muted);
+      margin-left: var(--space-1);
     }
 
     /* Overflow: +N more */
@@ -561,6 +595,53 @@
       /* Hide scroll hint on mobile */
       .scroll-hint {
         display: none;
+      }
+
+      /* Metric takeover - mobile layout */
+      .metric-takeover {
+        padding: var(--space-4);
+      }
+
+      .metric-takeover__tree {
+        font-size: var(--text-xs);
+        line-height: 1.6;
+        overflow-x: auto;
+      }
+
+      /* Driver tree - vertical stacking on mobile */
+      .driver {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .driver__node {
+        margin-left: 0;
+      }
+
+      /* Hide horizontal connectors on mobile */
+      .driver > .c,
+      .driver__child > .c:not(:first-child) {
+        display: none;
+      }
+
+      /* Stack driver children vertically with indentation */
+      .driver__children {
+        margin-left: var(--space-4);
+        margin-top: var(--space-1);
+      }
+
+      .driver__child {
+        flex-wrap: wrap;
+        margin-bottom: var(--space-1);
+      }
+
+      /* Connector spacing on mobile */
+      .driver__child > .c:first-child {
+        margin-right: var(--space-1);
+      }
+
+      .driver__leaf {
+        margin-left: var(--space-1);
       }
     }
   </style>
@@ -1100,36 +1181,117 @@
         <span class="driver__node">revenue</span>
         <span class="c"> ─── </span>
         <div class="driver__children">
+          <!-- TRAFFIC -->
           <div class="driver__child">
             <span class="c">├─ </span>
             <span class="driver__node">traffic</span>
             <span class="c"> ─── </span>
             <div class="driver__children">
-              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">organic</span></span>
-              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">paid</span></span>
-              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">owned</span></span>
+              <div class="driver__child">
+                <span class="c">├─ </span>
+                <span class="driver__node">organic</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">search</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">social</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">referral</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">direct</span></span>
+                </div>
+              </div>
+              <div class="driver__child">
+                <span class="c">├─ </span>
+                <span class="driver__node">paid</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">search ads</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">social ads</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">display</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">affiliates</span></span>
+                </div>
+              </div>
+              <div class="driver__child">
+                <span class="c">└─ </span>
+                <span class="driver__node">owned</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">email</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">sms</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">push</span></span>
+                </div>
+              </div>
             </div>
           </div>
+          <!-- CONVERSION -->
           <div class="driver__child">
             <span class="c">├─ </span>
             <span class="driver__node">conversion</span>
             <span class="c"> ─── </span>
-            <div class="driver__children" data-expanded="false">
-              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">land</span></span>
-              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">pdp view</span></span>
-              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">add to cart</span></span>
-              <span class="driver__child driver__hidden"><span class="c">├─ </span><span class="driver__leaf">checkout start</span></span>
-              <span class="driver__child driver__hidden"><span class="c">└─ </span><span class="driver__leaf">purchase</span></span>
-              <span class="driver__child driver__more">+2 more</span>
+            <div class="driver__children">
+              <div class="driver__child">
+                <span class="c">├─ </span>
+                <span class="driver__node">land</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">page load</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">trust signals</span></span>
+                </div>
+              </div>
+              <div class="driver__child">
+                <span class="c">├─ </span>
+                <span class="driver__node">product page</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">imagery</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">reviews</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">price clarity</span></span>
+                </div>
+              </div>
+              <div class="driver__child">
+                <span class="c">├─ </span>
+                <span class="driver__node">add to cart</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">variant ux</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">inventory</span></span>
+                </div>
+              </div>
+              <div class="driver__child">
+                <span class="c">└─ </span>
+                <span class="driver__node">checkout</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">account friction</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">payment options</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">shipping clarity</span></span>
+                </div>
+              </div>
             </div>
           </div>
+          <!-- AOV -->
           <div class="driver__child">
             <span class="c">└─ </span>
             <span class="driver__node">aov</span>
             <span class="c"> ─── </span>
             <div class="driver__children">
-              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">units per order</span></span>
-              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">price per unit</span></span>
+              <div class="driver__child">
+                <span class="c">├─ </span>
+                <span class="driver__node">units per order</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">bundling</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">cross-sell</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">thresholds</span></span>
+                </div>
+              </div>
+              <div class="driver__child">
+                <span class="c">└─ </span>
+                <span class="driver__node">price per unit</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">base pricing</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">discounting</span></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1144,32 +1306,94 @@
         <span class="driver__node">ltv</span>
         <span class="c"> ─── </span>
         <div class="driver__children">
+          <!-- AOV -->
           <div class="driver__child">
             <span class="c">├─ </span>
             <span class="driver__node">aov</span>
             <span class="c"> ─── </span>
             <div class="driver__children">
-              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">units per order</span></span>
-              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">price per unit</span></span>
+              <div class="driver__child">
+                <span class="c">├─ </span>
+                <span class="driver__node">units per order</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">bundling</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">cross-sell</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">thresholds</span></span>
+                </div>
+              </div>
+              <div class="driver__child">
+                <span class="c">└─ </span>
+                <span class="driver__node">price per unit</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">base pricing</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">discounting</span></span>
+                </div>
+              </div>
             </div>
           </div>
+          <!-- PURCHASE FREQUENCY -->
           <div class="driver__child">
             <span class="c">├─ </span>
             <span class="driver__node">purchase frequency</span>
             <span class="c"> ─── </span>
             <div class="driver__children">
-              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">product quality</span></span>
-              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">category dynamics</span></span>
-              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">retention marketing</span></span>
+              <div class="driver__child">
+                <span class="c">├─ </span>
+                <span class="driver__node">product quality</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">durability</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">satisfaction</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">nps</span></span>
+                </div>
+              </div>
+              <div class="driver__child">
+                <span class="c">├─ </span>
+                <span class="driver__node">category</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">consumable vs durable</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">purchase cycle</span></span>
+                </div>
+              </div>
+              <div class="driver__child">
+                <span class="c">└─ </span>
+                <span class="driver__node">retention</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">email flows</span></span>
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">loyalty</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">win-back</span></span>
+                </div>
+              </div>
             </div>
           </div>
+          <!-- LIFESPAN -->
           <div class="driver__child">
             <span class="c">└─ </span>
             <span class="driver__node">lifespan</span>
             <span class="c"> ─── </span>
             <div class="driver__children">
-              <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">churn</span></span>
-              <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">reactivation</span></span>
+              <div class="driver__child">
+                <span class="c">├─ </span>
+                <span class="driver__node">churn</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">voluntary</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">involuntary</span></span>
+                </div>
+              </div>
+              <div class="driver__child">
+                <span class="c">└─ </span>
+                <span class="driver__node">reactivation</span>
+                <span class="c"> ─── </span>
+                <div class="driver__children">
+                  <span class="driver__child"><span class="c">├─ </span><span class="driver__leaf">triggers</span></span>
+                  <span class="driver__child"><span class="c">└─ </span><span class="driver__leaf">channels</span></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
