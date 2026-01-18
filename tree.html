@@ -454,23 +454,93 @@
 
       .tree {
         font-size: var(--text-xs);
+        white-space: normal;
+      }
+
+      /* Stack root row vertically */
+      .tree__root-row {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .tree__root {
-        font-size: var(--text-xl);
+        font-size: var(--text-base);
+        margin-bottom: var(--space-3);
       }
 
-      .tree__root-connector {
-        font-size: var(--text-xl);
+      /* Hide horizontal connector after root */
+      .tree__root-row > .c {
+        display: none;
       }
 
+      /* Main tree level - indent from root */
+      .tree__level {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      /* Tree rows - allow wrapping, keep items inline */
+      .tree__row {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin-bottom: var(--space-4);
+      }
+
+      /* Hide horizontal connectors to children and dot leaders */
+      .tree__row > .c:not(.c-dark),
+      .dots {
+        display: none;
+      }
+
+      /* Keep vertical tree connectors visible and inline */
+      .c-dark {
+        display: inline;
+      }
+
+      /* Description stays inline with label, add dash separator */
+      .tree__row > .desc::before {
+        content: ' - ';
+      }
+
+      /* Book authors stay inline with title, use dash separator */
+      .expandable .desc::before {
+        content: ' - ';
+        color: var(--text-muted);
+      }
+
+      /* Children wrap to new line and stack vertically */
+      .children--inline {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        margin-left: var(--space-6);
+        margin-top: var(--space-2);
+      }
+
+      .children--inline > span {
+        margin-bottom: var(--space-1);
+      }
+
+      /* Expandable children */
+      .children {
+        margin-left: var(--space-4);
+        margin-top: var(--space-2);
+      }
+
+      /* Narrative footer */
       .narrative {
         grid-template-columns: 1fr;
-        gap: var(--space-4);
+        gap: var(--space-6);
       }
 
+      /* Quote cards */
       .quote-card {
-        width: 240px;
+        width: 260px;
+      }
+
+      /* Hide scroll hint on mobile */
+      .scroll-hint {
+        display: none;
       }
     }
   </style>
