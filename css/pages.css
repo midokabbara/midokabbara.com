@@ -5,6 +5,7 @@
   font-family: var(--font-mono);
   font-size: var(--text-base); /* 13px - matches body */
   line-height: 1.6;
+  max-width: 420px;
 }
 
 .tree-home__root {
@@ -24,6 +25,15 @@
 .tree-home__tagline {
   color: var(--text-muted);
   margin-bottom: var(--space-3);
+}
+
+.tree-home__about {
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-6);
+  max-width: 380px;
+  font-size: var(--text-xs);
+  line-height: 1.7;
 }
 
 .tree-home__branches {
@@ -69,20 +79,21 @@
 }
 
 .tree-home__contact {
-  color: var(--text-muted);
+  color: #888;
   display: flex;
   gap: var(--space-2);
-  margin-top: var(--space-2);
+  margin-top: var(--space-4);
+  font-size: var(--text-xs);
 }
 
 .tree-home__contact a {
-  color: var(--text-muted);
+  color: #888;
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 .tree-home__contact a:hover {
-  color: var(--text);
+  color: var(--text-muted);
 }
 
 /* Old tree styles (for reference, can be removed) */
