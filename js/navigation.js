@@ -186,6 +186,17 @@
     return true;
   }
 
+  // Check if link is a back button
+  function isBackButton(link) {
+    return link.classList.contains('location__back') ||
+           link.classList.contains('tree__back');
+  }
+
+  // Clear the navigation source
+  function clearNavSource() {
+    sessionStorage.removeItem(NAV_FROM_KEY);
+  }
+
   // Attach click handlers to track navigation
   function attachNavTracking() {
     document.addEventListener('click', function(e) {
@@ -194,6 +205,13 @@
 
       const href = link.getAttribute('href');
       if (!isInternalLink(href)) return;
+
+      // If clicking a back button, clear nav source so destination shows default
+      // This prevents loops: tree → path → tree → path...
+      if (isBackButton(link)) {
+        clearNavSource();
+        return;
+      }
 
       // Store current page before navigating
       storeNavSource();
