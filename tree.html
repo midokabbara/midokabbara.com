@@ -229,7 +229,6 @@
       color: var(--text);
       cursor: pointer;
       touch-action: manipulation;
-      font-size: 16px;
     }
 
     .idea-tag:hover {
@@ -600,6 +599,11 @@
       /* Quote cards */
       .quote-card {
         width: 260px;
+      }
+
+      /* Prevent iOS auto-zoom on small interactive elements */
+      .idea-tag {
+        font-size: 16px;
       }
 
       /* Hide scroll hint on mobile */
