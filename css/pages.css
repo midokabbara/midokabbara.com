@@ -229,7 +229,7 @@
   content: '';
   position: absolute;
   left: calc(-1 * var(--space-6));
-  top: 0.45em;
+  top: 8px;
   width: 6px;
   height: 6px;
   background: var(--text);
