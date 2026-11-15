@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>the full tree · mido kabbara</title>
-  <meta name="description" content="a visual decomposition of everything i've built, thought, and experienced.">
+  <meta name="description" content="a tree of selected work, books and ideas.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -720,6 +720,15 @@
         margin-left: var(--space-1);
       }
     }
+    /* A keyboard-only focus cue; no change to resting or pointer styles. */
+    .hidden-branch:has(:focus-visible) {
+      opacity: 1;
+    }
+
+    [role="button"]:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 3px;
+    }
   </style>
 </head>
 <body>
@@ -745,14 +754,15 @@
               <span class="desc">what i've made</span>
               <span class="c"> ─── </span>
               <div class="children--inline" data-overflow-expanded="false">
+                <span><span class="c">├─ </span><a href="projects/self-serve-after-checkout.html" class="leaf" data-project="self-serve-after-checkout">self-serve after checkout</a></span>
                 <span><span class="c">├─ </span><a href="projects/analytics-redesign.html" class="leaf" data-project="analytics-redesign">analytics redesign</a></span>
                 <span><span class="c">├─ </span><a href="projects/multi-store.html" class="leaf" data-project="multi-store">multi-store</a></span>
-                <span><span class="c">├─ </span><a href="projects/the-drop.html" class="leaf" data-project="the-drop">the drop</a></span>
-                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/pod-subscription.html" class="leaf" data-project="pod-subscription">pod subscription</a></span>
-                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/pin2-challenge.html" class="leaf" data-project="pin2-challenge">pin2 challenge</a></span>
-                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/legacy-valuation.html" class="leaf" data-project="legacy-valuation">holding group valuation</a></span>
-                <span class="overflow-hidden"><span class="c">└─ </span><a href="projects/airline-turnaround.html" class="leaf" data-project="airline-turnaround">airline turnaround</a></span>
-                <span class="overflow-more">+4 more</span>
+                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/the-drop.html" class="leaf" data-project="the-drop">the drop</a></span>
+                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/pod-subscription.html" class="leaf" data-project="pod-subscription">t-shirt club</a></span>
+                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/business-valuation.html" class="leaf" data-project="business-valuation">business valuation</a></span>
+                <span class="overflow-hidden"><span class="c">├─ </span><a href="projects/airline-turnaround.html" class="leaf" data-project="airline-turnaround">airline turnaround</a></span>
+                <span class="overflow-hidden"><span class="c">└─ </span><a href="projects/pin2-challenge.html" class="leaf" data-project="pin2-challenge">pin2 challenge</a></span>
+                <span class="overflow-more">+5 more</span>
               </div>
             </div>
 
@@ -771,7 +781,7 @@
                 <!-- BOOKS - expandable to ideas -->
                 <span class="expandable" data-expanded="false">
                   <span class="c">├─ </span>
-                  <span class="leaf-text">sample of books ive read</span>
+                  <span class="leaf-text">sample of books i've read</span>
                   <span class="c"> ─── </span>
                   <div class="expanded children--inline">
 
@@ -836,7 +846,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "market expansion choices", "legacy-valuation": "strategic positioning analysis", "airline-turnaround": "turnaround strategy"}'>strategy</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "market expansion choices", "business-valuation": "strategic positioning analysis", "airline-turnaround": "turnaround strategy"}'>strategy</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Strategy is choice. An integrated set of choices that uniquely positions the firm to create sustainable advantage."</div>
                             <div class="quote-card">"It is only through making and acting on choices that you can win. Clear, tough choices force your hand but also free you to focus."</div>
@@ -855,7 +865,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "local market moats", "legacy-valuation": "sustainable advantages", "airline-turnaround": "differentiation levers"}'>competitive advantage</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "local market moats", "business-valuation": "sustainable advantages", "airline-turnaround": "differentiation levers"}'>competitive advantage</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Winning means providing a better consumer value equation than competitors, on a sustainable basis."</div>
                             <div class="quote-card">"To determine how to win, an organization must decide what will enable it to create unique value and sustainably deliver that value."</div>
@@ -876,7 +886,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "frameworks for metrics", "pin2-challenge": "structured thinking"}'>mental models</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "frameworks for metrics", "pin2-challenge": "structured thinking", "self-serve-after-checkout": "policy, eligibility and action"}'>mental models</span>
                           <div class="quote-cards">
                             <div class="quote-card">"The central mental model is arguing from first principles—thinking from the bottom up, using basic building blocks."</div>
                             <div class="quote-card">"Thinking about a problem from an inverse perspective can unlock new solutions. The inverse of being right more is being wrong less."</div>
@@ -917,7 +927,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"legacy-valuation": "industry structure analysis", "airline-turnaround": "competitive dynamics"}'>five forces</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"business-valuation": "industry structure analysis", "airline-turnaround": "competitive dynamics"}'>five forces</span>
                           <div class="quote-cards">
                             <div class="quote-card">"The state of competition depends on five basic competitive forces. Their collective strength determines ultimate profit potential."</div>
                             <div class="quote-card">"The goal is to find a position where the company can best defend itself against competitive forces or influence them in its favor."</div>
@@ -926,7 +936,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "market differentiation", "legacy-valuation": "strategic fit", "airline-turnaround": "repositioning the brand"}'>positioning</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "market differentiation", "business-valuation": "strategic fit", "airline-turnaround": "repositioning the brand"}'>positioning</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Strategic positioning means performing different activities from rivals, or performing similar activities in different ways."</div>
                             <div class="quote-card">"Strategy is the creation of a unique and valuable position, involving a different set of activities."</div>
@@ -936,7 +946,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "scale vs. localization", "airline-turnaround": "cost vs. service"}'>trade-offs</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"multi-store": "scale vs. localization", "airline-turnaround": "cost vs. service", "self-serve-after-checkout": "different markets, one buyer experience"}'>trade-offs</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Strategy is making trade-offs in competing."</div>
                             <div class="quote-card">"Differentiation provides insulation against rivalry because of brand loyalty and lower price sensitivity."</div>
@@ -957,7 +967,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"legacy-valuation": "DCF fundamentals", "pod-subscription": "subscriber economics"}'>value creation</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"business-valuation": "DCF fundamentals", "pod-subscription": "subscriber economics"}'>value creation</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Companies create value by investing capital to generate future cash flows at rates of return exceeding their cost of capital."</div>
                             <div class="quote-card">"Value creation is driven by growth and ROIC. A company that earns a 20 percent return and grows at 10 percent creates more value than one that earns 10 percent and grows at 20 percent."</div>
@@ -966,7 +976,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"legacy-valuation": "return analysis"}'>roic</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"business-valuation": "return analysis"}'>roic</span>
                           <div class="quote-cards">
                             <div class="quote-card">"ROIC is the single most important metric for understanding long-term value creation."</div>
                             <div class="quote-card">"High returns attract competition. Sustainable competitive advantage is the only way to maintain high ROIC."</div>
@@ -1074,7 +1084,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"legacy-valuation": "market sizing"}'>fermi estimation</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"business-valuation": "market sizing"}'>fermi estimation</span>
                           <div class="quote-cards">
                             <div class="quote-card">"If a thing can be observed in any way at all, it lends itself to some type of measurement method."</div>
                             <div class="quote-card">"Your problem is not as unique as you think. Someone has measured something like it before."</div>
@@ -1083,7 +1093,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"legacy-valuation": "scenario modeling"}'>uncertainty</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"business-valuation": "scenario modeling"}'>uncertainty</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Measurement is the reduction of uncertainty, not the elimination of it."</div>
                             <div class="quote-card">"The things that matter most are often the things we know least about."</div>
@@ -1132,7 +1142,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "data-informed choices", "pin2-challenge": "judgment under constraints"}'>decision making</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"analytics-redesign": "data-informed choices", "pin2-challenge": "judgment under constraints", "self-serve-after-checkout": "connecting the projects around a buyer need"}'>decision making</span>
                           <div class="quote-cards">
                             <div class="quote-card">"A mental model is a representation of how something works. We use models to understand the world."</div>
                             <div class="quote-card">"The quality of your thinking depends on the mental models in your head."</div>
@@ -1161,7 +1171,7 @@
 
                         <span>
                           <span class="c">├─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"legacy-valuation": "model building"}'>practical analysis</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"business-valuation": "model building"}'>practical analysis</span>
                           <div class="quote-cards">
                             <div class="quote-card">"A model is only as good as its assumptions. Garbage in, garbage out."</div>
                             <div class="quote-card">"The goal is not precision but insight. A rough model that captures the key drivers beats a precise model that misses them."</div>
@@ -1170,7 +1180,7 @@
 
                         <span>
                           <span class="c">└─ </span>
-                          <span class="idea-tag" data-expanded="false" data-project-notes='{"legacy-valuation": "key driver testing"}'>sensitivity</span>
+                          <span class="idea-tag" data-expanded="false" data-project-notes='{"business-valuation": "key driver testing"}'>sensitivity</span>
                           <div class="quote-cards">
                             <div class="quote-card">"Always test your key assumptions. What happens if growth is 5% instead of 10%?"</div>
                             <div class="quote-card">"The best analysts know which variables matter most and focus their energy there."</div>
@@ -1238,11 +1248,11 @@
     <footer class="narrative">
       <div class="narrative__col">
         <h3>why a tree?</h3>
-        <p>everything can be decomposed. a career is a sequence of roles. a project is a set of decisions. an idea is a collection of influences. the tree makes the structure visible.</p>
+        <p>the tree is a way to explore the connections between my work, what i read and how i think. follow a branch and see where it takes you.</p>
       </div>
       <div class="narrative__col">
         <h3>decomposition</h3>
-        <p>the most useful skill i've learned: break anything into its component parts. at pwc, in consulting and deals, it was problem breakdown, valuation and roic drivers. at amazon, inputs and outputs forming a flywheel. at shopify, merchant-facing analytics is about helping merchants understand the drivers of their business, decomposing things like revenue = traffic x conversion x aov. same mental model, different domains.</p>
+        <p>the most useful skill i've learned: break something down until you can see how it works. at pwc, that meant business models, valuation and the drivers of a return. at amazon, demand, capacity and the choices behind a new business. at shopify, helping merchants explore their data, then working through orders, rules and what happens after checkout. that's a habit i've carried across the different roles.</p>
       </div>
     </footer>
 
@@ -1726,6 +1736,7 @@
       });
     }
   </script>
+  <script src="js/tree-accessibility.js"></script>
   <script src="js/navigation.js"></script>
 </body>
 </html>

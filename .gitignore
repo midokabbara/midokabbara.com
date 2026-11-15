@@ -1,0 +1,16 @@
+# Keep local career sources and review artifacts outside this public site.
+.DS_Store
+.claude/
+/career-private/
+/work/
+/outputs/
+copy-proposal.html
+sketch-options.html
+assets/sketch-options/
+assets/pen-sketches/prompts.json
+components/text-tree.html
+*dossier*
+*story-bank*
+*.docx
+*.zip
+*.log

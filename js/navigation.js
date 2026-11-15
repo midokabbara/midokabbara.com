@@ -17,7 +17,16 @@
     'tree.html': { name: 'tree', isFullPage: true },
     'portfolio.html': { name: 'build', isSection: true },
     'writing.html': { name: 'think', isSection: true },
-    'history.html': { name: 'path', isSection: true }
+    'history.html': { name: 'path', isSection: true },
+    'self-serve-after-checkout.html': { name: 'self-serve after checkout' },
+    'analytics-redesign.html': { name: 'analytics redesign' },
+    'multi-store.html': { name: 'multi-store reporting' },
+    'the-drop.html': { name: 'the drop' },
+    'pod-subscription.html': { name: 't-shirt club' },
+    'business-valuation.html': { name: 'business valuation' },
+    'airline-turnaround.html': { name: 'airline turnaround' },
+    'pin2-challenge.html': { name: 'pin2 challenge' },
+    'bottlenecks.html': { name: 'bottlenecks' }
   };
 
   // Get filename from path
@@ -63,6 +72,7 @@
 
     const navData = {
       filename: filename,
+      path: isInSubdirectory() ? window.location.pathname.split('/').filter(Boolean).slice(-2).join('/') : filename,
       hash: hash,
       name: pageInfo ? pageInfo.name : filename.replace('.html', '').replace(/-/g, ' '),
       isHome: pageInfo ? (pageInfo.isHome || false) : false,
@@ -105,7 +115,7 @@
   // Format: ← mido / [referrer] / current
   function buildBreadcrumbHTML(navSource, currentName, prefix) {
     const homeHref = prefix + 'index.html';
-    let referrerHref = prefix + navSource.filename;
+    let referrerHref = prefix + (navSource.path || navSource.filename);
     if (navSource.hash) referrerHref += navSource.hash;
 
     // If referrer is home, just show: ← mido / current

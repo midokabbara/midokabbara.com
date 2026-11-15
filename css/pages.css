@@ -405,3 +405,16 @@
     gap: var(--space-3);
   }
 }
+
+/* Scope around selected case studies, without adding placeholder cards. */
+.portfolio__scope { max-width: 64ch; margin-bottom: var(--space-6); color: var(--text-muted); }
+.portfolio__other { max-width: 68ch; margin-top: var(--space-6); color: var(--text-muted); }
+.portfolio__subsection { margin-top: var(--space-8); margin-bottom: var(--space-4); font-size: var(--text-base); font-weight: 500; }
+.timeline__assignment { margin-top: var(--space-6); margin-bottom: var(--space-2); font-size: var(--text-base); font-weight: 500; }
+
+/* Career hierarchy: employer, then business area, role and dates. */
+.career-current-title { margin-top: var(--space-4); margin-bottom: var(--space-4); font-weight: 500; }
+.career-assignment { margin-top: var(--space-6); }
+.career-assignment__title { font-size: var(--text-lg); font-weight: 500; margin-bottom: var(--space-1); }
+.career-assignment__role { margin: 0; font-size: var(--text-base); }
+.career-assignment__period { margin-top: var(--space-1); margin-bottom: var(--space-2); font-size: var(--text-xs); color: var(--text-muted); }
