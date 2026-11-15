@@ -418,3 +418,15 @@
 .career-assignment__title { font-size: var(--text-lg); font-weight: 500; margin-bottom: var(--space-1); }
 .career-assignment__role { margin: 0; font-size: var(--text-base); }
 .career-assignment__period { margin-top: var(--space-1); margin-bottom: var(--space-2); font-size: var(--text-xs); color: var(--text-muted); }
+
+/* Secondary name sits below the existing contact row without moving the homepage. */
+.tree-home__contact { position: relative; }
+.tree-home__name-note {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: var(--space-2) 0 0;
+  color: var(--text-muted);
+  font-size: inherit;
+  line-height: 1.6;
+}
