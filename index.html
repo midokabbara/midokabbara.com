@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/pages.css?v=20261115-names">
+  <link rel="stylesheet" href="css/home-sketches.css">
   <link rel="canonical" href="https://midokabbara.com/">
   <script type="application/ld+json">
 {
@@ -50,27 +51,37 @@
   <div class="site site--home">
     <!-- Main Content - Centered Tree -->
     <main class="site-main site-main--centered">
-      <div class="tree-home">
+      <div class="tree-home" data-sketch-style="pencil" data-intro-sketches data-valuation-sketch="drivers" data-strategy-sketch="board" data-consulting-sketch="synthesis">
+        <div class="intro-stage" id="intro-sketch-stage" aria-hidden="true"><canvas id="intro-sketch" width="660" height="336"></canvas></div>
         <a href="tree.html" class="tree-home__root">mido kabbara</a>
-        <div class="tree-home__about">I'm a product leader at Shopify, previously Amazon. Background in valuations and strategy consulting. I like starting from scratch. I get curious, go deep, and think about the whole system while building.</div>
+        <div class="tree-home__about">I'm a <button class="intro-word" type="button" data-intro-kind="product" aria-controls="intro-sketch-stage" aria-describedby="intro-sketch-help" aria-pressed="false" disabled>product</button> leader at Shopify, previously Amazon. Background in <button class="intro-word" type="button" data-intro-kind="valuations" aria-controls="intro-sketch-stage" aria-describedby="intro-sketch-help" aria-pressed="false" disabled>valuations</button> and <button class="intro-word" type="button" data-intro-kind="strategy" aria-controls="intro-sketch-stage" aria-describedby="intro-sketch-help" aria-pressed="false" disabled>strategy</button> <button class="intro-word" type="button" data-intro-kind="consulting" aria-controls="intro-sketch-stage" aria-describedby="intro-sketch-help" aria-pressed="false" disabled>consulting</button>. I like starting from scratch. I get curious, go deep, and think about the whole system while building.</div>
 
-        <nav class="tree-home__branches">
-          <a href="portfolio.html" class="tree-home__branch">
-            <span class="tree-home__connector">├─</span>
-            <span class="tree-home__label">build</span>
-            <span class="tree-home__desc">what i've made</span>
-          </a>
-          <a href="writing.html" class="tree-home__branch">
-            <span class="tree-home__connector">├─</span>
-            <span class="tree-home__label">think</span>
-            <span class="tree-home__desc">ideas & frameworks</span>
-          </a>
-          <a href="history.html" class="tree-home__branch">
-            <span class="tree-home__connector">└─</span>
-            <span class="tree-home__label">path</span>
-            <span class="tree-home__desc">how i got here</span>
-          </a>
-        </nav>
+        <div class="menu-area">
+          <nav class="tree-home__branches" aria-label="Main sections">
+            <div class="tree-home__branch row" data-kind="build">
+              <div class="trigger">
+                <button class="tree-home__connector branch" type="button" data-play="build" aria-label="Play build sketch" aria-controls="sketch-stage" aria-pressed="false" disabled><span aria-hidden="true">├─</span></button>
+                <a class="tree-home__label section-link" href="portfolio.html">build</a>
+              </div>
+              <span class="tree-home__desc description">what i've made</span>
+            </div>
+            <div class="tree-home__branch row" data-kind="think">
+              <div class="trigger">
+                <button class="tree-home__connector branch" type="button" data-play="think" aria-label="Play think sketch" aria-controls="sketch-stage" aria-pressed="false" disabled><span aria-hidden="true">├─</span></button>
+                <a class="tree-home__label section-link" href="writing.html">think</a>
+              </div>
+              <span class="tree-home__desc description">ideas &amp; frameworks</span>
+            </div>
+            <div class="tree-home__branch row" data-kind="path">
+              <div class="trigger">
+                <button class="tree-home__connector branch" type="button" data-play="path" aria-label="Play path sketch" aria-controls="sketch-stage" aria-pressed="false" disabled><span aria-hidden="true">└─</span></button>
+                <a class="tree-home__label section-link" href="history.html">path</a>
+              </div>
+              <span class="tree-home__desc description">how i got here</span>
+            </div>
+          </nav>
+          <div class="sketch-stage" id="sketch-stage" aria-hidden="true"><canvas id="sketch" width="780" height="312"></canvas></div>
+        </div>
 
         <div class="tree-home__contact">
           <a href="mailto:mkmido@gmail.com">mkmido@gmail.com</a>
@@ -79,10 +90,20 @@
           <span>·</span>
           <a href="resume.html">résumé</a>
         </div>
+        <span class="sr-only" id="intro-sketch-help">Play a small illustrated sketch.</span>
+        <span class="sr-only" id="sketch-status" aria-live="polite"></span>
       </div>
     </main>
   </div>
 
   <script src="js/navigation.js"></script>
+  <script src="js/home-sketches/drawings.js" defer></script>
+  <script src="js/home-sketches/app.js" defer></script>
+  <script src="js/home-sketches/intro-drawings.js" defer></script>
+  <script src="js/home-sketches/valuation-options.js" defer></script>
+  <script src="js/home-sketches/strategy-options.js" defer></script>
+  <script src="js/home-sketches/consulting-options.js" defer></script>
+  <script src="js/home-sketches/product-cart.js" defer></script>
+  <script src="js/home-sketches/intro.js" defer></script>
 </body>
 </html>
