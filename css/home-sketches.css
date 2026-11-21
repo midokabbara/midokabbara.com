@@ -1,0 +1,68 @@
+/* Homepage-only interaction layer; existing layout, fonts and copy remain authoritative. */
+[data-intro-sketches] { position:relative; --soft:#888; }
+[data-intro-sketches] .menu-area { position:relative; }
+/* Balance the space above and below the tree; sketches use half of each gap. */
+[data-intro-sketches] .tree-home__contact { margin-top:var(--space-6); }
+[data-intro-sketches] .trigger { display:inline-flex; align-items:baseline; gap:var(--space-2); flex:none; }
+[data-intro-sketches] .branch { border:0; background:none; padding:0; margin:0; font:inherit; color:var(--text-muted); cursor:pointer; touch-action:manipulation; }
+[data-intro-sketches] .branch:disabled { cursor:default; }
+[data-intro-sketches] .branch:focus-visible, [data-intro-sketches] .section-link:focus-visible { outline:1px solid #888; outline-offset:2px; }
+[data-intro-sketches] .tree-home__branch:hover { padding-left:0; }
+[data-intro-sketches] .section-link:hover { color:var(--text-muted); }
+[data-intro-sketches] .description { white-space:nowrap; pointer-events:none; }
+[data-intro-sketches] .description-letter{display:inline-block;white-space:pre;opacity:1;transition:opacity var(--letter-in-duration) cubic-bezier(.22,1,.36,1);transition-delay:calc(var(--sketch-fade-duration) + var(--letter-in-delay))}
+[data-intro-sketches] .menu-area.has-sketch .description-letter{opacity:0;transition-duration:var(--letter-out-duration);transition-timing-function:cubic-bezier(.4,0,1,1);transition-delay:var(--letter-out-delay)}
+[data-intro-sketches] .sketch-stage{position:absolute;left:calc(var(--trigger-width) + 12px);right:0;top:50%;height:calc(100% + var(--space-6));transform:translateY(-50%);pointer-events:none;opacity:0;transition:opacity var(--sketch-fade-duration,180ms) ease;z-index:1}
+[data-intro-sketches] .sketch-stage.is-visible{opacity:1}
+[data-intro-sketches] .sketch-stage canvas{display:block;width:100%;height:100%}
+[data-intro-sketches] .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+[data-intro-sketches] .intro-word{display:inline;position:relative;isolation:isolate;vertical-align:baseline;appearance:none;-webkit-appearance:none;font:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;background:none;border:0;border-radius:0;box-shadow:none;padding:0;margin:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;text-decoration:none;transition:color 140ms ease}
+[data-intro-sketches] .intro-word::before{content:'';position:absolute;inset:16% -.035em 9%;z-index:-1;pointer-events:none;background-color:rgba(145,173,149,.16);background-image:repeating-linear-gradient(118deg,rgba(145,173,149,.07) 0,rgba(145,173,149,.07) .5px,transparent .5px,transparent 2.2px);clip-path:polygon(0 12%,17% 7%,39% 10%,62% 4%,83% 8%,100% 2%,99% 89%,78% 94%,54% 89%,31% 98%,12% 92%,0 97%);opacity:0;transition:opacity 420ms ease}
+[data-intro-sketches][data-intro-hints="playing"] .intro-word:not(:disabled):not(.is-active)::before{opacity:.42}
+@media(hover:hover) and (pointer:fine){[data-intro-sketches] .intro-word:not(:disabled):hover{color:#444}[data-intro-sketches] .intro-word:not(:disabled):hover::before{opacity:1}}
+[data-intro-sketches] .intro-word:not(:disabled):active,[data-intro-sketches] .intro-word:not(:disabled).is-active{color:#444}
+[data-intro-sketches] .intro-word:not(:disabled):active::before,[data-intro-sketches] .intro-word:not(:disabled).is-active::before{opacity:1}
+[data-intro-sketches] .intro-word:focus{outline:none}
+[data-intro-sketches] .intro-word:focus-visible{outline:1px solid var(--soft);outline-offset:2px}
+[data-intro-sketches] .intro-word:disabled{cursor:default}
+[data-intro-sketches] .intro-stage{position:absolute;top:-130px;left:0;width:min(220px,100%);height:112px;opacity:0;pointer-events:none;transition:opacity 180ms ease}
+[data-intro-sketches] .intro-stage[data-variant="drivers"]{width:min(320px,100%)}
+[data-intro-sketches] .intro-stage.is-visible{opacity:1}
+[data-intro-sketches] .intro-stage canvas{display:block;width:100%;height:100%}
+@media(prefers-reduced-motion:reduce){[data-intro-sketches] .intro-word,[data-intro-sketches] .intro-word::before,[data-intro-sketches] .intro-stage{transition:none}}
+@media (max-width:768px) {
+ [data-intro-sketches] .intro-stage { left:24px; top:-106px; max-width:calc(100% - 48px); }
+}
+/* Keep the drawing above the name reachable on short portrait screens. */
+@media (max-height:512px) {
+ .site--home .site-main--centered { align-items:flex-start; padding-top:130px; padding-bottom:24px; }
+}
+/* Short, wide screens use one drawing area beside the entire text block. */
+@media (orientation:landscape) and (max-height:512px) {
+ .site--home .site-main--centered {
+  align-items:center;
+  width:100%;
+  padding:24px max(24px, env(safe-area-inset-right)) 24px max(24px, env(safe-area-inset-left));
+ }
+ [data-intro-sketches].tree-home {
+  --landscape-sketch-width:clamp(144px, 36vw, 320px);
+  width:100%;
+  max-width:724px;
+  padding:0 calc(var(--landscape-sketch-width) + 24px) 0 0;
+ }
+ [data-intro-sketches] .menu-area { position:static; }
+ [data-intro-sketches] .intro-stage,
+ [data-intro-sketches] .intro-stage[data-variant="drivers"],
+ [data-intro-sketches] .sketch-stage {
+  left:auto;
+  right:0;
+  top:50%;
+  width:var(--landscape-sketch-width);
+  max-width:none;
+  height:112px;
+  transform:translateY(-50%);
+ }
+}
+@media(prefers-reduced-motion:reduce) {
+ [data-intro-sketches] .description-letter, [data-intro-sketches] .sketch-stage { transition:none; }
+}
