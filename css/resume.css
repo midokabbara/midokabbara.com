@@ -8,19 +8,20 @@
 .resume-section-label { font: 400 var(--text-xs)/var(--leading-normal) var(--font-mono); color: var(--text-muted); margin-bottom: var(--space-6); }
 .resume-company + .resume-company { margin-top: var(--space-12); }
 .resume-company__header { margin-bottom: var(--space-6); }
-.resume-company__header h2 { margin-bottom: var(--space-1); }
+.resume-company__header h2 { font-size: var(--text-lg); margin-bottom: var(--space-1); }
 .resume-company__header p { font-size: var(--text-xs); }
 .resume-role + .resume-role { margin-top: var(--space-8); }
 .resume-role__header, .resume-degree { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-6); }
 .resume-role__header { margin-bottom: var(--space-3); }
-.resume-role__header h3 { max-width: 75%; }
+.resume-role__header h3 { font-size: var(--text-base); max-width: 75%; }
 .resume-date { font-size: var(--text-xs); color: var(--text-muted); white-space: nowrap; }
 .resume-bullets { list-style: disc; padding-left: 1.25em; }
+.resume-bullets li { font-size: var(--text-xs); }
 .resume-bullets li + li { margin-top: var(--space-3); }
 .resume-bullets a { text-decoration-thickness: 1px; text-decoration-color: var(--text-muted); }
 .resume-education, .resume-interests { margin-top: var(--space-12); }
 .resume-school + .resume-school { margin-top: var(--space-8); }
-.resume-school h3 { margin-bottom: var(--space-3); }
+.resume-school h3 { font-size: var(--text-base); margin-bottom: var(--space-3); }
 .resume-honours { margin-top: var(--space-2); color: var(--text-muted); }
 .resume-activity { margin-top: var(--space-4); }
 .resume-activity strong { font-weight: 500; }
